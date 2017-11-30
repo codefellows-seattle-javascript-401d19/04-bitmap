@@ -1,0 +1,19 @@
+{
+  "name": "lab-matt",
+  "version": "1.0.0",
+  "description": "04-bitmap code fellows javascript 401 lab",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "jest -i --coverage",
+    "lint": "eslint ./"
+  },
+  "author": "Matthew LeBlanc",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^4.12.1",
+    "jest": "^21.2.1"
+  }
+}
