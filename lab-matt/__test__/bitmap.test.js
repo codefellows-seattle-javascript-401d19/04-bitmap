@@ -24,10 +24,10 @@ describe('testing fs.readdir reads all files in a folder and returns an array', 
 });
 
 describe('testing buffering file returns data', () => {
-  test('buffer - returns {heaader}', (done) => {
+  test('buffer - type is equal to "BM"', (done) => {
     bitmap.bufferFile(files[0], (err, data) => {
-      console.log(data);
-      expect(data).toEqual('hello');
+      console.log(data.buffer);
+      expect(data.type).toEqual('BM');
       done();
     });
   });
