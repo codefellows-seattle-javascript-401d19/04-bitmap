@@ -1,6 +1,6 @@
 'use strict';
 
-// let stringBuffer = Buffer('The Hound');
+let stringBuffer = Buffer('The Hound');
 
 // console.log(`Buffer as a string: ${stringBuffer.toString()}`);
 // console.log(`Buffer as hex`);
@@ -8,7 +8,7 @@
 
 // console.log('Extracting only one character');
 // console.log(stringBuffer.readUInt8(0));
-// //console.log(stringBuffer.readUInt16LE(0));
+// console.log(stringBuffer.readUInt16LE(0));
 
 // console.log(stringBuffer.readUInt16LE(0));
 // console.log(stringBuffer.readUInt32LE(0));
@@ -21,12 +21,12 @@
 
 //vinicio - reading the first 16 bytes of a number
 
-//stringBuffer.fill(97);
-
+// stringBuffer.fill(97);
+//
 // stringBuffer.writeUInt8(97,2);// vinicio - 2 is not the size
 // console.log(stringBuffer);
 // console.log(stringBuffer.toString());
-
+//
 // stringBuffer.write('and');
 // console.log(stringBuffer);
 // console.log(stringBuffer.toString());
@@ -34,7 +34,7 @@
 const bitmap = require('./lib/bitmap');
 const fs = require('fs');
 
-fs.readFile(`${__dirname}/__test__/assets/house.bmp`, (error,data) => {
+fs.readFile(`${__dirname}/__test__/assets/house.bmp`, (error, data) => {
   if (error){
     console.error(error);
     return;
@@ -42,4 +42,10 @@ fs.readFile(`${__dirname}/__test__/assets/house.bmp`, (error,data) => {
 
   let parsedBitmap = bitmap.parseBitmap(data);
   console.log(parsedBitmap);
+  fs.writeFile(`${__dirname}/__test__/assets/testwrite.bmp`, parsedBitmap, error => {
+    if (error){
+      console.error(error);
+      return;
+    }
+  });
 });
