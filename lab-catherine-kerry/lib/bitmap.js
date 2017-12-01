@@ -17,7 +17,14 @@ bitmap.parseBitmap = (buffer) => {
   parsedBitmap.fileSize = buffer.readInt32LE(FILE_SIZE_OFFSET);
   parsedBitmap.pixelTableOffset = buffer.readInt32LE(PIXEL_TABLE_OFFSET);
   parsedBitmap.height = buffer.readInt32LE(HEIGHT_OFFSET);
-  parsedBitmap.colorTable = buffer.slice(57, 1077);
+  parsedBitmap.colorTable = buffer.slice(54, 1077);
+  parsedBitmap.colorTable.forEach((value, position) => {
+    console.log(value);
+    if(position % 2 === 0) {
+      buffer.writeUInt8(80, position + 54);     
+    }
+  });
   console.log(parsedBitmap.colorTable = buffer.slice(57, 1077));
+  console.log(parsedBitmap);
   return parsedBitmap;
 };
