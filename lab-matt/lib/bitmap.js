@@ -16,7 +16,7 @@ bitmap.bufferFile = (file, callback) => {
     // mattL - data is the returned buffer format of the file
     // console.log(data);
 
-    let parsedBitmap = bitmap.createModule(data);
+    let parsedBitmap = bitmap.createBufferObject(data);
 
     // mattL - parsedBitmap is object containing all properties of the buffer
     console.log(parsedBitmap);
@@ -24,13 +24,30 @@ bitmap.bufferFile = (file, callback) => {
   });
 };
 
-bitmap.createModule = (buffer) => {
+bitmap.createBufferObject = (buffer) => {
   let parsedBitmap = {};
+  let offset = {};
 
+  offset.FILE_SIZE = 2;
+  offset.PIXEL_DATA_START = 10;
+  offset.HEADER_SIZE = 14;
+  offset.PIXEL_WIDTH = 18;
+  offset.PIXEL_HEIGHT = 22;
+  offset.BITS_PER_PIXEL = 28;
+  offset.COMPRESSION_USED = 30;
 
   parsedBitmap.buffer = buffer;
   parsedBitmap.type = buffer.toString('utf-8', 0, 2);
-  parsedBitmap.fileSize = buffer.readInt32LE(2);
+  parsedBitmap.fileSize = buffer.readInt32LE(offset.FILE_SIZE);
+  parsedBitmap.pixelDataStart = buffer.readInt32LE(offset.PIXEL_DATA_START);
+  parsedBitmap.headerSize = buffer.readInt32LE(offset.HEADER_SIZE);
+  parsedBitmap.width = buffer.readInt32LE(offset.PIXEL_WIDTH);
+  parsedBitmap.height = buffer.readInt32LE(offset.PIXEL_WIDTH);
+  parsedBitmap.bitsPerPixel = buffer.readInt8(offset.BITS_PER_PIXEL);
+  parsedBitmap.compressionUsed = buffer.readInt32LE(offset.COMPRESSION_USED);
+  
+  
+  
 
   return parsedBitmap;
 };

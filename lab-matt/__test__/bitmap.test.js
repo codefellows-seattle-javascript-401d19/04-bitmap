@@ -28,6 +28,11 @@ describe('testing buffering file returns data', () => {
     bitmap.bufferFile(files[0], (err, data) => {
       console.log(data.buffer);
       expect(data.type).toEqual('BM');
+      expect(data.fileSize).not.toBeNull();
+      expect(data.pixelDataStart).not.toBeNull();
+      expect(data.width).not.toBeNull();
+      
+      
       done();
     });
   });
