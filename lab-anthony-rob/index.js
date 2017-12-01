@@ -19,9 +19,10 @@ const modifyBmp = (infile, outfile, transformIndex) => {
     }
     let bmpMeta = parser(data);
     let newBuffer = transform(bmpMeta, transformIndex);
-    // console.log(newBuffer);
+    // console.log(bmpMeta.colorPalleteBuffer);
+    bmpMeta.colorPalleteBuffer.forEach((byte, i) => console.log(byte, i));
     // writer(newBuffer, outfile);
   });
 };
 
-modifyBmp(`${__dirname}/__test__/assets/finger-print.bmp`, null, 0);
+modifyBmp(`${__dirname}/__test__/assets/non-palette-bitmap.bmp`, null, 0);
