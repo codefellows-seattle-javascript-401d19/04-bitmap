@@ -5,10 +5,7 @@ const parser = require('./lib/parser');
 const transform = require('./lib/transform');
 const writer = require('./lib/writer');
 
-// pass the returned buffer array to parser
-//     parser returns an object with the meta data about the bmp file
-
-// pass buffer, metadata object, and transform index to transform
+// pass metadata object, and transform index to transform
 //     manipulate the buffer based on specific transform requirements
 //     return a modified buffer
 
@@ -20,10 +17,11 @@ const modifyBmp = (infile, outfile, transformIndex) => {
     if (error){
       throw new TypeError('bad input file path');
     }
-    console.log(data.toString('hex'));
-    // let bmpMeta = parser(data);
-    // let newBuffer = transform(data, bmpMeta, transformIndex);
+    let bmpMeta = parser(data);
+    let newBuffer = transform(bmpMeta, transformIndex);
+    // console.log(newBuffer);
     // writer(newBuffer, outfile);
   });
 };
-modifyBmp(`${__dirname}/__test__/assets/bitmap.bmp`);
+
+modifyBmp(`${__dirname}/__test__/assets/finger-print.bmp`, null, 0);
