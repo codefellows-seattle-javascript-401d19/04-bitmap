@@ -12,4 +12,14 @@ fs.readFile(`${__dirname}/__test__/asset/house.bmp`, (error,data) => {
 
   let parsedBitmap = bitmap.parseBitmap(data);
   console.log(parsedBitmap);
+
+  fs.writeFile(`${__dirname}/__test__/asset/houseTest.bmp`, data, error => {
+    if(error)
+    {
+      console.error(error);
+      return;
+    }
+  
+  });
 });
+
