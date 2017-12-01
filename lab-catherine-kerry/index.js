@@ -13,5 +13,3 @@ fs.readFile(`${__dirname}/__test__/asset/house.bmp`, (error,data) => {
   let parsedBitmap = bitmap.parseBitmap(data);
   console.log(parsedBitmap);
 });
-
-console.log(__dirname);
