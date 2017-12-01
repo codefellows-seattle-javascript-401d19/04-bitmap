@@ -3,7 +3,7 @@
 const bitmap = require('./lib/bitmap');
 const fs = require('fs');
 
-fs.readFile(`${__dirname}/assets/house.bmp`, (error,data) => {
+fs.readFile(`${__dirname}/asset/house.bmp`, (error,data) => {
   if(error)
   {
     console.error(error);
