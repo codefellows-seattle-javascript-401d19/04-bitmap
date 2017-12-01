@@ -13,7 +13,11 @@
   "author": "Matthew LeBlanc",
   "license": "ISC",
   "devDependencies": {
+    "buffer": "^5.0.8",
     "eslint": "^4.12.1",
     "jest": "^21.2.1"
+  },
+  "dependencies": {
+    "fs": "0.0.1-security"
   }
 }
