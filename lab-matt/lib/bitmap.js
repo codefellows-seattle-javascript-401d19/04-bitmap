@@ -34,7 +34,6 @@ bitmap.createBufferObject = (buffer) => {
   offset.PIXEL_WIDTH = 18;
   offset.PIXEL_HEIGHT = 22;
   offset.BITS_PER_PIXEL = 28;
-  offset.COMPRESSION_USED = 30;
 
   parsedBitmap.buffer = buffer;
   parsedBitmap.type = buffer.toString('utf-8', 0, 2);
@@ -44,9 +43,11 @@ bitmap.createBufferObject = (buffer) => {
   parsedBitmap.width = buffer.readInt32LE(offset.PIXEL_WIDTH);
   parsedBitmap.height = buffer.readInt32LE(offset.PIXEL_WIDTH);
   parsedBitmap.bitsPerPixel = buffer.readInt8(offset.BITS_PER_PIXEL);
-  parsedBitmap.compressionUsed = buffer.readInt32LE(offset.COMPRESSION_USED);
+  // parsedBitmap.newBuffer = buffer.writeUInt8('0x4',10);
   
   
+  fs.writeFile('output.bmp', parsedBitmap.buffer, err => console.log(err));
+  fs.writeFile('output.json', JSON.stringify(parsedBitmap.buffer), err => console.log(err));
   
 
   return parsedBitmap;

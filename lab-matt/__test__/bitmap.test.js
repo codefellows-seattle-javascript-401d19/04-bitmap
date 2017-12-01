@@ -24,13 +24,16 @@ describe('testing fs.readdir reads all files in a folder and returns an array', 
 });
 
 describe('testing buffering file returns data', () => {
-  test('buffer - type is equal to "BM"', (done) => {
+  test('buffer - type is equal to "BM" and has other properties', (done) => {
     bitmap.bufferFile(files[0], (err, data) => {
       console.log(data.buffer);
       expect(data.type).toEqual('BM');
       expect(data.fileSize).not.toBeNull();
       expect(data.pixelDataStart).not.toBeNull();
       expect(data.width).not.toBeNull();
+      expect(data.height).not.toBeNull();
+      expect(data.bitsPerPixel).not.toBeNull();
+      
       
       
       done();
