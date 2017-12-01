@@ -3,7 +3,7 @@
 const readImg = module.exports = {};
 const fs = require('fs');
 
-readImg.getFile = (inputFilePath) => {
+readImg.getFile = (inputFilePath, callback) => {
 
   const HEIGHT_OFFSET = 22;
   const PIXEL_TABLE_OFFSET = 10;
@@ -12,7 +12,7 @@ readImg.getFile = (inputFilePath) => {
 
   fs.readFile(inputFilePath, (error, data) => {
     if(error) {
-      console.error(error);
+      callback(error);
       return;
     }
 
@@ -27,8 +27,8 @@ readImg.getFile = (inputFilePath) => {
     }
 
     var constructedBitmap = new ConstructBitmap(data);
+    callback(null, constructedBitmap);
 
-    console.log(constructedBitmap);
   });
 
 };
