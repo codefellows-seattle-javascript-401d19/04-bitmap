@@ -11,11 +11,13 @@ bitmap.parseBitmap = (buffer) => {
   const FILE_SIZE_OFFSET = 2;
 
   parsedBitmap.buffer = buffer;
-  // catherine & kerry - we are taking the first 2 characters because of the docs
+  // vinicio - we are taking the first 2 characters because of the docs
   //           https://en.wikipedia.org/wiki/BMP_file_format
   parsedBitmap.type = buffer.toString('utf-8',0,2);
   parsedBitmap.fileSize = buffer.readInt32LE(FILE_SIZE_OFFSET);
   parsedBitmap.pixelTableOffset = buffer.readInt32LE(PIXEL_TABLE_OFFSET);
   parsedBitmap.height = buffer.readInt32LE(HEIGHT_OFFSET);
+  parsedBitmap.colorTable = buffer.slice(57, 1077);
+  console.log(parsedBitmap.colorTable = buffer.slice(57, 1077));
   return parsedBitmap;
 };

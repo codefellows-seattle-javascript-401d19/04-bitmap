@@ -19,7 +19,6 @@ fs.readFile(`${__dirname}/__test__/asset/house.bmp`, (error,data) => {
       console.error(error);
       return;
     }
-  
   });
 });
 
