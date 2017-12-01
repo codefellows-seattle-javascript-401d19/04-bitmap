@@ -1,0 +1,33 @@
+{
+  "name": "lab-andrew-dalton",
+  "version": "1.0.0",
+  "description": "bitmap",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "jest -i --coverage",
+    "lint": "eslint ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ALB37/04-bitmap.git"
+  },
+  "keywords": [
+    "bitmap",
+    "node",
+    "npm",
+    "jest"
+  ],
+  "author": "Andrew Bloom and Dalton Carr",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ALB37/04-bitmap/issues"
+  },
+  "homepage": "https://github.com/ALB37/04-bitmap#readme",
+  "devDependencies": {
+    "eslint": "^4.12.1",
+    "jest": "^21.2.1"
+  }
+}
