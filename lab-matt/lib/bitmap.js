@@ -76,16 +76,17 @@ bitmap.createBufferObject = (buffer) => {
 };
 
 transform.invertColors = (colorPalette) => {
+  // blue
   for (let i = 0; i < colorPalette.length; i += 4) {
-    colorPalette.fill(
-      255-colorPalette[i],
-      i, i+1);   // buffer.fill(value[, offset[, end]][, encoding])
+    colorPalette.fill(255-colorPalette[i], i, i+1);   // buffer.fill(value[, offset[, end]][, encoding])
   }
 
+  // green
   for (let i = 1; i < colorPalette.length; i +=4) {
     colorPalette.fill(255-colorPalette[i], i, i+1);
   }
 
+  // red
   for (let i = 2; i < colorPalette.length; i +=4) {
     colorPalette.fill(255-colorPalette[i], i, i+1);
   }
