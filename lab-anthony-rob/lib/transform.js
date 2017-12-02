@@ -1,15 +1,25 @@
 'use strict';
 
-const transforms = [];
+const transforms = {};
 
-let toGrayscale = bmpData => {
-  let newBuffer = Buffer.from(bmpData.buffer);
-  
-  return newBuffer;
+transforms.grayscaleAvg = bmpData => {
+  let buff = bmpData.colorPalleteBuffer;
+  for(let i = 0; i < buff.length; i += 4) {
+    let average = (buff[i] + buff[i + 1] + buff[i + 2])/3;
+    buff[i] = buff[i + 1] = buff[i + 2] = average;
+  }
 };
 
-transforms.push(toGrayscale);
+transforms.invert = bmpData => {
+  let buff = bmpData.colorPalleteBuffer;
+  for(let i = 0; i < buff.length; i += 4) {
+    buff[i] = 255 - buff.readInt8(i);
+    buff[i + 1] = 255 - buff.readInt8(i + 1);
+    buff[i + 2] = 255 - buff.readInt8(i + 2);
+  }
+};
 
-module.exports = (bmpData, transformIndex) => {
-  return transforms[transformIndex](bmpData);
+module.exports = (bmpData, myTransforms) => {
+  for(let transform of myTransforms)
+    transforms[transform](bmpData);
 };
