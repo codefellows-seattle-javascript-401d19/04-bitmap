@@ -35,7 +35,7 @@ const bitmap = require('./lib/bitmap');
 const bwtransform = require('./lib/bwtransform');
 const fs = require('fs');
 
-let file = 'house.bmp';
+let file = 'non-palette-bitmap.bmp';
 
 fs.readFile(`${__dirname}/__test__/assets/${file}`, (error, data) => {
   if (error){
