@@ -150,4 +150,4 @@ $RECYCLE.BIN/
 
 ### Playground file for node REPL ###
 
-lib/playground.js
+./output
