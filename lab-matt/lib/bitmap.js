@@ -22,13 +22,17 @@ bitmap.bufferFile = (file, transformation, callback) => {
     // mattL - switch case to determine which transformation to use
     let transformationFileName;
     switch (transformation) {
-    case ('invert'): 
+    case ('invert'):
       transformationFileName = 'inverted';
       transform.invertColors(parsedBitmap.colorPalette);
       break;
     case ('randomize'):
       transformationFileName = 'randomized';    
       transform.randomize(parsedBitmap.colorPalette);
+      break;
+    case ('grayscale'):
+      transformationFileName = 'grayscale';
+      transform.grayscale(parsedBitmap.colorPalette);
       break;
     }
 
@@ -38,7 +42,6 @@ bitmap.bufferFile = (file, transformation, callback) => {
     fs.writeFile(`${__dirname}/../created_files/${transformationFileName}-${file}.bmp`, parsedBitmap.buffer, err => { if (err) console.log(err); });
     fs.writeFile(`${__dirname}/../created_files/dev_information/buffer-${file}.json`, JSON.stringify(parsedBitmap.buffer), err => { if (err) console.log(err); });
     fs.writeFile(`${__dirname}/../created_files/dev_information/palette-${file}.txt`, JSON.stringify(parsedBitmap.colorPalette), err => { if (err) console.log(err); });
-  
   
     // mattL - parsedBitmap is object containing all properties of the buffer
     if (callback) callback(parsedBitmap);
@@ -74,9 +77,11 @@ bitmap.createBufferObject = (buffer) => {
 
 transform.invertColors = (colorPalette) => {
   for (let i = 0; i < colorPalette.length; i += 4) {
-    colorPalette.fill(255-colorPalette[i], i, i+1);   // buffer.fill(value[, offset[, end]][, encoding])
+    colorPalette.fill(
+      255-colorPalette[i],
+      i, i+1);   // buffer.fill(value[, offset[, end]][, encoding])
   }
-
+  
   for (let i = 1; i < colorPalette.length; i +=4) {
     colorPalette.fill(255-colorPalette[i], i, i+1);
   }
@@ -87,15 +92,26 @@ transform.invertColors = (colorPalette) => {
 };
 
 transform.randomize = (colorPalette) => {
-  for (let i = 1; i < colorPalette.length; i += 4) {
-    colorPalette.fill(255-(colorPalette[i]), i, i+1);
+  for (let i = 0; i < colorPalette.length; i += 4) {
+    colorPalette.fill(Math.floor(Math.random() * 256), i, i+1);
   }
 
-  // for (let i = 2; i < colorPalette.length; i +=4) {
-  //   colorPalette.fill(255-(colorPalette[i]), i, i+1);
-  // }
+  for (let i = 1; i < colorPalette.length; i += 4) {
+    colorPalette.fill(Math.floor(Math.random() * 256), i, i+1);
+  }
 
-  // for (let i = 0; i < colorPalette.length; i +=4) {
-  //   colorPalette.fill(255-(colorPalette[i]), i, i+1);
-  // }
+  for (let i = 2; i < colorPalette.length; i += 4) {
+    colorPalette.fill(Math.floor(Math.random() * 256), i, i+1);
+  }
+};
+
+transform.grayscale = (colorPalette) => {
+  // Red=30%, Green=59%, Blue=11% --- https://www.gimp.org/tutorials/Color2BW/#channelmixer
+  for (let i = 0; i < colorPalette.length; i += 4) {
+    colorPalette.fill(
+      (colorPalette[i]*.11) + 
+      (colorPalette[i+1]*.59) + 
+      (colorPalette[i+2])*.30, 
+      i, i+3);
+  }
 };
