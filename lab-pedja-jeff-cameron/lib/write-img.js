@@ -4,8 +4,8 @@ const writeImg = module.exports = {};
 
 const fs = require('fs');
 
-writeImg.writeFile = (outputFilePath, transformedImage, callback) => {
-  fs.writeFile(outputFilePath, transformedImage, (error, data) => {
+writeImg.writeFile = (outputFilePath, constructedBitmap, callback) => {
+  fs.writeFile(outputFilePath, constructedBitmap.buffer, (error, data) => {
     if(error) {
       callback(error);
       return;
