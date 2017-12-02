@@ -23,7 +23,7 @@ readImg.getFile = (inputFilePath, callback) => {
       this.pixelTableOffset = buffer.readInt32LE(PIXEL_TABLE_OFFSET);
       this.height = buffer.readInt32LE(HEIGHT_OFFSET);
       this.dibHeader = buffer.readInt32LE(DIB_HEADER);
-      this.colorTable = buffer.slice(54, this.pixelTableOffset-1);
+      this.colorTable = buffer.slice(53, this.pixelTableOffset-1);
     }
 
     const constructedBitmap = new ConstructBitmap(data);
