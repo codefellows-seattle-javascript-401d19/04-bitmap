@@ -18,14 +18,13 @@ const transforms = process.argv.splice(4);
 const modifyBmp = (infile, outfile, transforms) => {
   fs.readFile(`${__dirname}/__test__/assets/${infile}`, (error, data) => {
     if (error){
-      console.log('this is the infile', infile);
-      console.error('bad input file path');
+      return console.error('bad input file path');
     }
     let bmpMeta = parser(data);
     transform(bmpMeta, transforms);
     fs.writeFile(`${__dirname}/__test__/assets/${outfile}`, bmpMeta.buffer, (error) => {
       if(error)
-        console.error(error);
+        return console.error(error);
       console.log(outfile, 'has been created successfully');
     });
   });
