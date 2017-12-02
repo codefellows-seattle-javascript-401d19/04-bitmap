@@ -23,12 +23,11 @@ readImg.getFile(inputFilePath, (error, data) => {
     }
     constructedBitmap = data;
 
-    writeImg.writeFile(outputFilePath, constructedBitmap, (errror, data) => {
+    writeImg.writeFile(outputFilePath, constructedBitmap, (error) => {
       if(error) {
         console.error(error);
         return;
       }
-      console.log(data);
       console.log('Transform complete!');
     });
   });
