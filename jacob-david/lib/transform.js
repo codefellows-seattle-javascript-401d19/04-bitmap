@@ -1,18 +1,22 @@
 'use strict';
 
-const transform = module.exports = {};
-const parsedData = require('./lib/bitmap');
+const transformedBitmap = module.exports = {};
+const bitmap = require('./bitmap');
+
 
 // TODO: pass in the callback next to the buffer
-transform.invertColors = (buffer) => {
-  let transformedBitmap = {};
-
-  // TODO: write a for loop using the length of the color table, use write to make changes, incrememnt in factor of 4  (4  bytes at a time)
-    
-  // this is just test code, not sure if it works
-  transformedBitmap.color = buffer.fill(97);
+transformedBitmap.invertColors = (buffer) => {
   
 
-  return transformedBitmap;
+
+  let parsedBitmap = bitmap.parseBitmap(buffer);
+  console.log('====================================');
+  console.log(...parsedBitmap);
+  
+  console.log('====================================');  
+
+  // transformedBitmap.color = buffer.fill(97);
+  
+  // return transformedBitmap;
 };
     
