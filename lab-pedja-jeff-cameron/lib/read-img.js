@@ -26,7 +26,7 @@ readImg.getFile = (inputFilePath, callback) => {
       this.colorTable = buffer.slice(54, this.pixelTableOffset-1);
     }
 
-    var constructedBitmap = new ConstructBitmap(data);
+    const constructedBitmap = new ConstructBitmap(data);
     callback(null, constructedBitmap);
 
   });
