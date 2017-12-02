@@ -1,3 +1,7 @@
+'use-strict';
+
+const transImg = module.exports {};
+
 transImg.transFile(`${__dirname}/__test__/assets/house.bmp`, (error, data) => {
   if(error) {
     console.error(error);
