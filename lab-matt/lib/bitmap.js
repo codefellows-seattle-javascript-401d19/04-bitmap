@@ -17,8 +17,12 @@ bitmap.bufferFile = (file, transformation, callback) => {
     let parsedBitmap = bitmap.createBufferObject(data);
 
     switch (transformation) {
+      
     case ('invert'): 
       transform.invertColors(parsedBitmap.colorPalette);
+      break;
+    case ('randomize'):
+      transform.randomize(parsedBitmap.colorPalette);
       break;
     }
 
@@ -67,15 +71,6 @@ bitmap.createBufferObject = (buffer) => {
   
   console.log('NEW COLOR PALETTE', parsedBitmap.colorPalette, '\n');
   console.log('\nNEW BUFFER', parsedBitmap.buffer, '\n');
-  
-
-  
-  
-  
-  // fs.writeFile('output.bmp', parsedBitmap.buffer, err => console.log('bitmap.js~57_error:', err));
-  // fs.writeFile('output.json', JSON.stringify(parsedBitmap.buffer), err => console.log('bitmap.js~58_error:', err));
-  // fs.writeFile('output.txt', JSON.stringify(parsedBitmap.colorPalette), err => console.log('bitmap.js~59_error:', err));
-  
 
   return parsedBitmap;
 };
@@ -83,15 +78,29 @@ bitmap.createBufferObject = (buffer) => {
 transform.invertColors = (colorPalette) => {
   // buf.fill(value[, offset[, end]][, encoding])
   
-  for (let i = 1; i < colorPalette.length; i += 4) {
+  for (let i = 0; i < colorPalette.length; i += 4) {
+    colorPalette.fill(255-colorPalette[i], i, i+1);
+  }
+
+  for (let i = 1; i < colorPalette.length; i +=4) {
     colorPalette.fill(255-colorPalette[i], i, i+1);
   }
 
   for (let i = 2; i < colorPalette.length; i +=4) {
     colorPalette.fill(255-colorPalette[i], i, i+1);
   }
+};
 
-  for (let i = 3; i < colorPalette.length; i +=4) {
-    colorPalette.fill(255-colorPalette[i], i, i+1);
+transform.randomize = (colorPalette) => {
+  for (let i = 1; i < colorPalette.length; i += 4) {
+    colorPalette.fill(255-(colorPalette[i]), i, i+1);
   }
+
+  // for (let i = 2; i < colorPalette.length; i +=4) {
+  //   colorPalette.fill(255-(colorPalette[i]), i, i+1);
+  // }
+
+  // for (let i = 0; i < colorPalette.length; i +=4) {
+  //   colorPalette.fill(255-(colorPalette[i]), i, i+1);
+  // }
 };
