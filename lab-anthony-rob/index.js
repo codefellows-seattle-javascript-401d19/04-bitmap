@@ -11,14 +11,19 @@ const transform = require('./lib/transform');
 // pass the modified buffer and outfile path to writer
 //     write the buffer to the outfile
 
+const infile = process.argv[2];
+const outfile = process.argv[3];
+const args = process.argv[4];
+
 const modifyBmp = (infile, outfile, ...args) => {
-  fs.readFile(infile, (error, data) => {
+  fs.readFile(`${__dirname}/__test__/assets/${infile}`, (error, data) => {
     if (error){
-      throw new TypeError('bad input file path');
+      console.log('this is the infile', infile);
+      console.error('bad input file path');
     }
     let bmpMeta = parser(data);
     transform(bmpMeta, args);
-    fs.writeFile(outfile, bmpMeta.buffer, (error) => {
+    fs.writeFile(`${__dirname}/__test__/assets/${outfile}`, bmpMeta.buffer, (error) => {
       if(error)
         console.error(error);
       console.log(outfile, 'has been created successfully');
@@ -26,7 +31,4 @@ const modifyBmp = (infile, outfile, ...args) => {
   });
 };
 
-modifyBmp(`${__dirname}/__test__/assets/bitmap.bmp`, `${__dirname}/__test__/assets/house-copy-invert.bmp`, 'invert');
-modifyBmp(`${__dirname}/__test__/assets/bitmap.bmp`, `${__dirname}/__test__/assets/house-grayscale.bmp`, 'grayscaleAvg');
-modifyBmp(`${__dirname}/__test__/assets/bitmap.bmp`, `${__dirname}/__test__/assets/house-invert-grayscale.bmp`, 'invert', 'grayscaleAvg');
-modifyBmp(`${__dirname}/__test__/assets/bitmap.bmp`, `${__dirname}/__test__/assets/house-grayscale-invert.bmp`, 'grayscaleAvg', 'invert');
+modifyBmp(`${infile}`, `${outfile}`, args);
