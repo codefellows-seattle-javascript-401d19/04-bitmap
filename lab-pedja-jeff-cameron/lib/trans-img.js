@@ -24,7 +24,7 @@ transImg.transFile = (transformName, constructedBitmap, callback) => {
 
 
 const greyscale = colorTable => {
-  console.log('transforming bitmap into greyscale');
+  console.log('===> Transforming bitmap into greyscale');
 
   let R = 0;
   let G = 0;
@@ -41,7 +41,7 @@ const greyscale = colorTable => {
 };
 
 const invert = colorTable => {
-  console.log('transforming bitmap into inverted');
+  console.log('===> transforming bitmap into inverted');
 
   for (let i = 0; i < colorTable.length; i+=4) {
     let R = 255;
@@ -55,7 +55,7 @@ const invert = colorTable => {
 };
 
 const acid = colorTable => {
-  console.log('transforming bitmap into acid');
+  console.log('===> transforming bitmap into acid');
 
   for(let i = 0; i < colorTable.length; i+=4) {
     colorTable[i+2] = 0;
