@@ -1,7 +1,1 @@
-(error) => {
-  if(error)
-    return error;
-
-  transformedBitmap.greyScale()
-  console.log('Siiiiick');
-}
+NEWHOUSE.bmp
