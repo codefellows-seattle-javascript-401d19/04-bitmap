@@ -57,10 +57,14 @@ describe('trans-img.js', () => {
         return;
       }
       let constructedBitmap = data;
-      transFile(transformName, constructedBitmap, error => {
+
+      // Pedja - this callback function needs verification for inverting image, only testing that error is null.
+      const callback = error => {
         expect(error).toBeNull();
         done();
-      });
+      };
+
+      transFile(transformName, constructedBitmap, callback);
     });
   });
 
