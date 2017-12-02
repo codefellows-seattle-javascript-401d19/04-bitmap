@@ -1,0 +1,22 @@
+{
+  "name": "04-bitmap",
+  "version": "1.0.0",
+  "description": "lab 4",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest -i"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hazzed/04-bitmap.git"
+  },
+  "author": "Dalton",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hazzed/04-bitmap/issues"
+  },
+  "homepage": "https://github.com/hazzed/04-bitmap#readme",
+  "devDependencies": {
+    "jest": "^21.2.1"
+  }
+}
