@@ -13,9 +13,9 @@ const transform = require('./lib/transform');
 
 const infile = process.argv[2];
 const outfile = process.argv[3];
-const args = process.argv[4];
+const args = process.argv.splice(4);
 
-const modifyBmp = (infile, outfile, ...args) => {
+const modifyBmp = (infile, outfile, args) => {
   fs.readFile(`${__dirname}/__test__/assets/${infile}`, (error, data) => {
     if (error){
       console.log('this is the infile', infile);
@@ -30,5 +30,6 @@ const modifyBmp = (infile, outfile, ...args) => {
     });
   });
 };
-
+// node index.js ./mybmp.bmp ./out.bmp grayscaleAvg invert
+// modifyBmp(`${infile}`, `${outfile}`, process.argv[4], process.argv[5]);
 modifyBmp(`${infile}`, `${outfile}`, args);
