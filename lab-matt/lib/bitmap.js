@@ -10,18 +10,27 @@ bitmap.helloWorld = () => {
 };
 
 // -------------- CODE ------------------
-bitmap.bufferFile = (file, callback) => {
+bitmap.bufferFile = (file, transformation, callback) => {
   fs.readFile(`${__dirname}/../__test__/assets/${file}`, (err, data) => {
     if (err) throw err;
 
-    // mattL - data is the returned buffer format of the file
-    // console.log(data);
-
     let parsedBitmap = bitmap.createBufferObject(data);
 
+    switch (transformation) {
+    case ('invert'): 
+      transform.invertColors(parsedBitmap.colorPalette);
+      break;
+    }
+
+
+    fs.writeFile(`${__dirname}/../new_files/${transformation}ed-${file}`, parsedBitmap.buffer, err => console.log('bitmap.js~57_error:', err));
+    fs.writeFile('output.json', JSON.stringify(parsedBitmap.buffer), err => console.log('bitmap.js~58_error:', err));
+    fs.writeFile('output.txt', JSON.stringify(parsedBitmap.colorPalette), err => console.log('bitmap.js~59_error:', err));
+  
+  
     // mattL - parsedBitmap is object containing all properties of the buffer
     console.log('\n BITMAP OBJECT', parsedBitmap, '\n');
-    callback(null, parsedBitmap);
+    callback(null, null, parsedBitmap);
   });
 };
 
@@ -47,29 +56,33 @@ bitmap.createBufferObject = (buffer) => {
   parsedBitmap.width = buffer.readInt32LE(offset.PIXEL_WIDTH);
   parsedBitmap.height = buffer.readInt32LE(offset.PIXEL_WIDTH);
   parsedBitmap.bitsPerPixel = buffer.readInt8(offset.BITS_PER_PIXEL);
+
+  // offset.COLOR_PALETTE = (offset.HEADER_SIZE + parsedBitmap.headerSize);
+
   parsedBitmap.colorPalette = buffer.slice(offset.COLOR_PALETTE, parsedBitmap.pixelDataTable);
   console.log('\nOLD COLOR PALETTE', parsedBitmap.colorPalette, '\n');
-  parsedBitmap.newBuffer = transform.replace(parsedBitmap.colorPalette);
+  // parsedBitmap.newBuffer = transform.invertColors(parsedBitmap.colorPalette);
+
+  // transform.invertColors(parsedBitmap.colorPalette);
+  
   console.log('NEW COLOR PALETTE', parsedBitmap.colorPalette, '\n');
+  console.log('\nNEW BUFFER', parsedBitmap.buffer, '\n');
+  
+
   
   
   
-  
-  fs.writeFile('output.bmp', parsedBitmap.buffer, err => console.log('bitmap.js~57_error:', err));
-  fs.writeFile('output.json', JSON.stringify(parsedBitmap.newBuffer), err => console.log('bitmap.js~58_error:', err));
-  fs.writeFile('output.txt', JSON.stringify(parsedBitmap.newBuffer), err => console.log('bitmap.js~59_error:', err));
+  // fs.writeFile('output.bmp', parsedBitmap.buffer, err => console.log('bitmap.js~57_error:', err));
+  // fs.writeFile('output.json', JSON.stringify(parsedBitmap.buffer), err => console.log('bitmap.js~58_error:', err));
+  // fs.writeFile('output.txt', JSON.stringify(parsedBitmap.colorPalette), err => console.log('bitmap.js~59_error:', err));
   
 
   return parsedBitmap;
 };
 
-transform.replace = (colorPalette) => {
+transform.invertColors = (colorPalette) => {
   // buf.fill(value[, offset[, end]][, encoding])
   
-  // mattL - log all the pixel locations
-  // for (let i = 0; i < colorPalette.length; i += 4) {
-  //   console.log(colorPalette[i]);
-  // }
   for (let i = 1; i < colorPalette.length; i += 4) {
     colorPalette.fill(255-colorPalette[i], i, i+1);
   }
@@ -81,10 +94,4 @@ transform.replace = (colorPalette) => {
   for (let i = 3; i < colorPalette.length; i +=4) {
     colorPalette.fill(255-colorPalette[i], i, i+1);
   }
-
-  return colorPalette;
 };
-
-transform.fill = (buffer, replacement) => {
-
-}
