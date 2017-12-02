@@ -3,32 +3,30 @@
 const fs = require('fs');
 const parser = require('./lib/parser');
 const transform = require('./lib/transform');
-
-// pass metadata object, and transform index to transform
-//     manipulate the buffer based on specific transform requirements
-//     return a modified buffer
-
-// pass the modified buffer and outfile path to writer
-//     write the buffer to the outfile
-
 const infile = process.argv[2];
 const outfile = process.argv[3];
 const transforms = process.argv.splice(4);
 
 const modifyBmp = (infile, outfile, transforms) => {
   fs.readFile(`${__dirname}/__test__/assets/${infile}`, (error, data) => {
-    if (error){
-      return console.error('bad input file path');
+    if(error){
+      console.error(`\nInput file ${infile} does not exist in directory ${__dirname}/__test__/assets/`);
+      return;
     }
+
     let bmpMeta = parser(data);
     transform(bmpMeta, transforms);
+
     fs.writeFile(`${__dirname}/__test__/assets/${outfile}`, bmpMeta.buffer, (error) => {
-      if(error)
-        return console.error(error);
-      console.log(outfile, 'has been created successfully');
+      if(error) {
+        console.error(`\n${error}`);
+        return;
+      }
+      console.log(`\n${infile} has undergone the following transforms:\n\t${transforms.join('\n\t')}\nThe file has been saved in the same folder as ${outfile}.`);
     });
   });
 };
-// node index.js ./mybmp.bmp ./out.bmp grayscaleAvg invert
-// modifyBmp(`${infile}`, `${outfile}`, process.argv[4], process.argv[5]);
-modifyBmp(infile, outfile, transforms);
+
+let message = '\nYou must include at least one transform as a command line argument.';
+
+transforms.length > 0 ? modifyBmp(infile, outfile, transforms) : console.error(message);
