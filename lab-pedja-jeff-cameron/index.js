@@ -1,8 +1,8 @@
 'use strict';
 
-// const bitmap = require('./lib/bitmap');
 const readImg = require('./lib/read-img');
 const transImg = require('./lib/trans-img');
+const writeImg = require('./lib/write-img');
 
 const inputFilePath = process.argv[2];
 const outputFilePath = process.argv[3];
@@ -14,20 +14,21 @@ readImg.getFile(inputFilePath, (error, data) => {
     return;
   }
 
-  const bitmapProps = data;
-  console.log(bitmapProps);
-  transImg.transFile(transformName, bitmapProps, (error, data) => {
+  let constructedBitmap = data;
+
+  transImg.transFile(transformName, constructedBitmap, (error, data) => {
     if(error) {
       console.error(error);
       return;
     }
-    const transformedImage = data;
+    constructedBitmap = data;
 
-    writeImg.writeFile(outputFilePath, transformedImage, (errror, data) => {
+    writeImg.writeFile(outputFilePath, constructedBitmap, (errror, data) => {
       if(error) {
         console.error(error);
         return;
       }
+      console.log(data);
       console.log('Transform complete!');
     });
   });
