@@ -13,16 +13,16 @@ const transform = require('./lib/transform');
 
 const infile = process.argv[2];
 const outfile = process.argv[3];
-const args = process.argv.splice(4);
+const transforms = process.argv.splice(4);
 
-const modifyBmp = (infile, outfile, args) => {
+const modifyBmp = (infile, outfile, transforms) => {
   fs.readFile(`${__dirname}/__test__/assets/${infile}`, (error, data) => {
     if (error){
       console.log('this is the infile', infile);
       console.error('bad input file path');
     }
     let bmpMeta = parser(data);
-    transform(bmpMeta, args);
+    transform(bmpMeta, transforms);
     fs.writeFile(`${__dirname}/__test__/assets/${outfile}`, bmpMeta.buffer, (error) => {
       if(error)
         console.error(error);
@@ -32,4 +32,4 @@ const modifyBmp = (infile, outfile, args) => {
 };
 // node index.js ./mybmp.bmp ./out.bmp grayscaleAvg invert
 // modifyBmp(`${infile}`, `${outfile}`, process.argv[4], process.argv[5]);
-modifyBmp(`${infile}`, `${outfile}`, args);
+modifyBmp(infile, outfile, transforms);
