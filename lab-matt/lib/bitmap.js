@@ -81,7 +81,7 @@ transform.invertColors = (colorPalette) => {
       255-colorPalette[i],
       i, i+1);   // buffer.fill(value[, offset[, end]][, encoding])
   }
-  
+
   for (let i = 1; i < colorPalette.length; i +=4) {
     colorPalette.fill(255-colorPalette[i], i, i+1);
   }
@@ -92,16 +92,20 @@ transform.invertColors = (colorPalette) => {
 };
 
 transform.randomize = (colorPalette) => {
+  let red = Math.floor(Math.random() * 256);
+  let blue = Math.floor(Math.random() * 256);
+  let green = Math.floor(Math.random() * 256);
+  
   for (let i = 0; i < colorPalette.length; i += 4) {
-    colorPalette.fill(Math.floor(Math.random() * 256), i, i+1);
+    colorPalette.fill(blue - colorPalette[i], i, i+1);
   }
 
   for (let i = 1; i < colorPalette.length; i += 4) {
-    colorPalette.fill(Math.floor(Math.random() * 256), i, i+1);
+    colorPalette.fill(green - colorPalette[i], i, i+1);
   }
 
   for (let i = 2; i < colorPalette.length; i += 4) {
-    colorPalette.fill(Math.floor(Math.random() * 256), i, i+1);
+    colorPalette.fill(red - colorPalette[i], i, i+1);
   }
 };
 
