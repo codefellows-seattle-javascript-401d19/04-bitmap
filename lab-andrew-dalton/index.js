@@ -32,17 +32,21 @@ let stringBuffer = Buffer('The Hound');
 // console.log(stringBuffer.toString());
 
 const bitmap = require('./lib/bitmap');
+const bwtransform = require('./lib/bwtransform');
 const fs = require('fs');
 
-fs.readFile(`${__dirname}/__test__/assets/house.bmp`, (error, data) => {
+let file = 'house.bmp';
+
+fs.readFile(`${__dirname}/__test__/assets/${file}`, (error, data) => {
   if (error){
     console.error(error);
     return;
   }
 
   let parsedBitmap = bitmap.parseBitmap(data);
-  console.log(parsedBitmap);
-  fs.writeFile(`${__dirname}/__test__/assets/testwrite.bmp`, parsedBitmap, error => {
+  let bwtransformed = bwtransform.transform(parsedBitmap);
+  // console.log(parsedBitmap);
+  fs.writeFile(`${__dirname}/__test__/assets/test${file}`, bwtransformed.buffer, error => {
     if (error){
       console.error(error);
       return;
