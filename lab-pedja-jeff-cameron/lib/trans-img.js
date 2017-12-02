@@ -16,7 +16,7 @@ transImg.transFile = (transformName, constructedBitmap, callback) => {
     acid(colorTable);
     break;
   default:
-    callback('Please use one of the following values: \n greyscale \n invert \n magenta');
+    callback('Please use one of the following values: \n greyscale \n invert \n acid');
   }
 
   callback(null, constructedBitmap);
