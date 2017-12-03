@@ -20,5 +20,8 @@
   "devDependencies": {
     "eslint": "^4.12.1",
     "jest": "^21.2.1"
+  },
+  "dependencies": {
+    "commander": "^2.12.2"
   }
 }

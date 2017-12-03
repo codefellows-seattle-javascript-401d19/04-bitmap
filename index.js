@@ -1,8 +1,11 @@
+#!/usr/bin/env node
+
 'use strict';
 
+const commander = require(`commander`);
 const bitmapTransformer = require(`./lib/bitmapTransformer`);
 const fs = require(`fs`);
 
-bitmapTransformer.alterBMP = (inputPath, outputPath, transformType) => {
-    fs.readFile(absolutePath, callback)
+bitmapTransformer.something = (inputPath, outputPath, transformType) => {
+    // fs.readFile(absolutePath, callback)
 }
