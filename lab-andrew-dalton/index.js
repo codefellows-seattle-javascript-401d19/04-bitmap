@@ -105,5 +105,10 @@ if (errorCounter < 1) {
   if (command === 'bwtransform') index.bwTransformer();
   if (command === 'flipcolors') index.flipColors();
   if (command === 'randomcolors') index.randomColors();
-  else console.log('type \'bmptransform help\' for available transform types');
+}
+
+let commandArr = ['addcontrast', 'bwtransform', 'flipcolors', 'randomcolors'];
+
+if (commandArr.indexOf(command) === -1){
+  console.log('type \'bmptransform help\' for available transform types');
 }

@@ -1,26 +1,19 @@
 'use strict';
 
 const bwTransform = module.exports = {};
-// const PIXEL_TABLE_OFFSET = 10;
-
 
 bwTransform.transform = parsedBuffer => {
   if (parsedBuffer.pixelTableOffset === 54){
-    let divisor = parseInt((parsedBuffer.buffer.length - 54) / 255);
-    let counter = 0;
-    let color = 0;
-    for (let i = 54; i < parsedBuffer.buffer.length; i++){
-      if (counter === divisor && color < 255){
-        counter = 0;
-        color++;
-      }
-      // let minOrMax = parsedBuffer.buffer[i] <= 127 ? 0 : 255;
-      // let randomNum = Math.floor(Math.random() * 256);
-      parsedBuffer.buffer.writeUInt8(color, i);
-      counter++;
+    let rowLength = parsedBuffer.width * (parsedBuffer.colorDepth / 8);
+    let padding = 0;
+    if (rowLength % 4 !== 0){
+      padding = 4 - (rowLength % 4);
     }
-    console.log('Your bmp had no color table. Here\'s a nice grayscale for you instead!');
-    // throw new Error('black and white transform can only be performed on 24bit color bmp files with embedded color tables');
+    for (let i = 54; i < parsedBuffer.buffer.length; i += 3){
+      if (i !== 54 && (i - 54) % rowLength === 0) i += padding;
+      parsedBuffer.buffer.writeUInt8(parsedBuffer.buffer[i], i + 1);
+      parsedBuffer.buffer.writeUInt8(parsedBuffer.buffer[i], i + 2);
+    }
   } else {
     parsedBuffer.colorTable.forEach((value, index, array) => {
       if (index % 4 === 0){
