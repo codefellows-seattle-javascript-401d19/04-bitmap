@@ -8,7 +8,7 @@
   },
   "scripts": {
     "test": "jest -i --coverage || exit 0",
-    "lint": "eslintrc **/*.js || exit 0"
+    "lint": "eslint *.js **/*.js || exit 0"
   },
   "repository": {
     "type": "git",
