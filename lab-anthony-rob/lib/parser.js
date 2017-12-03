@@ -6,7 +6,7 @@ const WIDTH_OFFSET = 18;
 const HEIGHT_OFFSET = 22;
 const COLOR_TABLE_OFFSET = 54;
 
-module.exports = (buffer) => {
+module.exports = buffer => {
   const bufferData = {
     buffer: buffer,
     type: buffer.toString('utf-8', 0,2),
