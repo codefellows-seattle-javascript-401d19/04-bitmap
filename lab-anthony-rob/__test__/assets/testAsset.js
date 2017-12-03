@@ -60,16 +60,3 @@ asset.testBufferColorPalette = Buffer.from(colorPalette);
 asset.testData1 = {colorPaletteBuffer: Buffer.from(colorPalette)};
 asset.testData2 = {colorPaletteBuffer: Buffer.from(colorPalette)};
 asset.testData3 = {colorPaletteBuffer: Buffer.from(colorPalette)};
-
-// function writeTestFile(buffer) {
-//   const fs = require('fs');
-//   fs.writeFile(`${__dirname}/bmp-test.bmp`, buffer, (error) => {
-//     if (error) {
-//       console.error(`\n${error}`);
-//       return;
-//     }
-//     console.log(`Test file has been written successfully.`);
-//   });
-// }
-
-// writeTestFile(bmpBuffer);
