@@ -4,13 +4,6 @@ const fs = require('fs');
 const parser = require('./lib/parser');
 const transform = require('./lib/transform');
 
-// pass metadata object, and transform index to transform
-//     manipulate the buffer based on specific transform requirements
-//     return a modified buffer
-
-// pass the modified buffer and outfile path to writer
-//     write the buffer to the outfile
-
 const infile = process.argv[2];
 const outfile = process.argv[3];
 const transforms = process.argv.splice(4);
@@ -29,6 +22,5 @@ const modifyBmp = (infile, outfile, transforms) => {
     });
   });
 };
-// node index.js ./mybmp.bmp ./out.bmp grayscaleAvg invert
-// modifyBmp(`${infile}`, `${outfile}`, process.argv[4], process.argv[5]);
+
 modifyBmp(infile, outfile, transforms);
