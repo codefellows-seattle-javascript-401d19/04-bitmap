@@ -28,7 +28,5 @@ readImg.getFile = (inputFilePath, callback) => {
 
     const constructedBitmap = new ConstructBitmap(data);
     callback(null, constructedBitmap);
-
   });
-
 };
