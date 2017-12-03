@@ -30,4 +30,10 @@ describe('transform.js', () => {
       170, 170, 170, 0,
     ]));
   });
+
+  test('If an invalid transformation name is provided, an error is thrown.', () => {
+    expect(() => {
+      transform(asset.testData3, ['introvert']);
+    }).toThrow();
+  });
 });

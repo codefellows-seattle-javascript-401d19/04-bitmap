@@ -20,6 +20,9 @@ transforms.invert = bmpData => {
 };
 
 module.exports = (bmpData, myTransforms) => {
-  for(let transform of myTransforms)
+  for(let transform of myTransforms) {
+    if (!Object.keys(transforms).includes(transform))
+      throw new Error(`"${transform}" is not the name of a valid transformation.`);
     transforms[transform](bmpData);
+  }
 };
