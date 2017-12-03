@@ -19,6 +19,7 @@ bwTransform.transform = parsedBuffer => {
       parsedBuffer.buffer.writeUInt8(color, i);
       counter++;
     }
+    console.log('Your bmp had no color table. Here\'s a grayscale image!');
     // throw new Error('black and white transform can only be performed on 24bit color bmp files with embedded color tables');
   } else {
     parsedBuffer.colorTable.forEach((value, index, array) => {

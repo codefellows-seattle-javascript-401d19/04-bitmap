@@ -5,11 +5,7 @@ const randomColors = module.exports = {};
 randomColors.transform = parsedBuffer => {
   if (parsedBuffer.pixelTableOffset === 54){
     const colorArray = [];
-    // let b = 0;
     for (let i = 54; i < parsedBuffer.buffer.length; i++){
-      // parsedBuffer.buffer.writeUInt8(b, i);
-      // b++;
-      // if (b === 255) b = 0;
       if (colorArray.indexOf(parsedBuffer.buffer[i]) === -1){
         colorArray.push(parsedBuffer.buffer[i]);
       }

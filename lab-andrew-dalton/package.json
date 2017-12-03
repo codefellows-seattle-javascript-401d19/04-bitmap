@@ -22,6 +22,9 @@
   ],
   "author": "Andrew Bloom and Dalton Carr",
   "license": "MIT",
+  "bin": {
+    "bmptransform": "./index.js"
+  },
   "bugs": {
     "url": "https://github.com/ALB37/04-bitmap/issues"
   },
