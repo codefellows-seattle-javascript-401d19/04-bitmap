@@ -1,54 +1,35 @@
 'use strict';
 
-const bwtransform = module.exports = {};
+const bwTransform = module.exports = {};
+// const PIXEL_TABLE_OFFSET = 10;
 
-bwtransform.transform = parsedBuffer => {
+
+bwTransform.transform = parsedBuffer => {
   if (parsedBuffer.pixelTableOffset === 54){
-    const colorArray = [];
-    // let b = 0;
+    let divisor = parseInt((parsedBuffer.buffer.length - 54) / 255);
+    let counter = 0;
+    let color = 0;
     for (let i = 54; i < parsedBuffer.buffer.length; i++){
-      // parsedBuffer.buffer.writeUInt8(b, i);
-      // b++;
-      // if (b === 255) b = 0;
-      if (colorArray.indexOf(parsedBuffer.buffer[i]) === -1){
-        colorArray.push(parsedBuffer.buffer[i]);
+      if (counter === divisor && color < 255){
+        counter = 0;
+        color++;
       }
+      // let minOrMax = parsedBuffer.buffer[i] <= 127 ? 0 : 255;
+      // let randomNum = Math.floor(Math.random() * 256);
+      parsedBuffer.buffer.writeUInt8(color, i);
+      counter++;
     }
-    colorArray.sort((a, b) => a - b);
-    console.log(colorArray);
-    let divisor = parseInt(255 / colorArray.length);
-    const mappedArray = colorArray.map((e, i) => {
-      return divisor * i;
-    });
-    console.log(mappedArray);
-    for (let i = 54; i < parsedBuffer.buffer.length; i++){
-      parsedBuffer.buffer.writeUInt8(mappedArray[
-        colorArray.indexOf(parsedBuffer.buffer[i])
-      ], i);
-    }
+    // throw new Error('black and white transform can only be performed on 24bit color bmp files with embedded color tables');
   } else {
     parsedBuffer.colorTable.forEach((value, index, array) => {
-      // console.log(index, value);
-      // if (index % 4 === 0) console.log(index, value);
-      if (index % 4 !== 0){
-        // console.log(value);
-        // if (index % 4 === 2){
-        //   parsedBitmap.colorTable.writeUInt8(array[index - 1], index);
-        // }
-        // if (index % 4 === 3){
-        //   parsedBitmap.colorTable.writeUInt8(array[index - 2], index);
-        // }
-        // console.log(parsedBitmap.colorTable[index]);
-        if (index % 4 === 1){
-          parsedBuffer.colorTable.writeUInt8(array[index - 1], index);
-        }
-        if (index % 4 === 2){
-          parsedBuffer.colorTable.writeUInt8(array[index - 2], index);
-        }
-        if (index % 4 === 3){
-          parsedBuffer.colorTable.writeUInt8(array[index - 3], index);
-        }
-        // console.log(index, parsedBitmap.colorTable[index]);
+      if (index % 4 === 0){
+        parsedBuffer.colorTable.writeUInt8(index / 4, index);
+      }
+      if (index % 4 === 1){
+        parsedBuffer.colorTable.writeUInt8(array[index - 1], index);
+      }
+      if (index % 4 === 2){
+        parsedBuffer.colorTable.writeUInt8(array[index - 2], index);
       }
     });
   }

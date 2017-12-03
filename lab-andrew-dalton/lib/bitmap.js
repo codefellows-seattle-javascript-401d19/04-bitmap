@@ -24,33 +24,7 @@ bitmap.parseBitmap = buffer => {
   parsedBitmap.width = buffer.readInt32LE(WIDTH_OFFSET);
   parsedBitmap.height = buffer.readInt32LE(HEIGHT_OFFSET);
   parsedBitmap.colorTable = buffer.slice(54, parsedBitmap.pixelTableOffset);
-  // console.log(parsedBitmap.colorTable);
-  // parsedBitmap.colorTable.forEach((value, index, array) => {
-  //   // console.log(index, value);
-  //   // if (index % 4 === 0) console.log(index, value);
-  //   if (index % 4 !== 0){
-  //     // console.log(value);
-  //     // if (index % 4 === 2){
-  //     //   parsedBitmap.colorTable.writeUInt8(array[index - 1], index);
-  //     // }
-  //     // if (index % 4 === 3){
-  //     //   parsedBitmap.colorTable.writeUInt8(array[index - 2], index);
-  //     // }
-  //     // console.log(parsedBitmap.colorTable[index]);
-  //     if (index % 4 === 1){
-  //       parsedBitmap.colorTable.writeUInt8(array[index - 1], index);
-  //     }
-  //     if (index % 4 === 2){
-  //       parsedBitmap.colorTable.writeUInt8(array[index - 2], index);
-  //     }
-  //     if (index % 4 === 3){
-  //       parsedBitmap.colorTable.writeUInt8(array[index - 3], index);
-  //     }
-  //     // console.log(index, parsedBitmap.colorTable[index]);
-  //   }
-  //   // console.log(index, parsedBitmap.colorTable[index]);
-  // });
-  // console.log(parsedBitmap.colorTable);
+
   console.log(parsedBitmap);
   return parsedBitmap;
 };
