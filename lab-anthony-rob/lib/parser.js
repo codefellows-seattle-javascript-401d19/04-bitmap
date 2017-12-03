@@ -16,6 +16,8 @@ module.exports = (buffer) => {
     height: buffer.readInt32LE(HEIGHT_OFFSET),
   };
   bufferData.colorPaletteBuffer = buffer.slice(COLOR_TABLE_OFFSET, bufferData.pixelArrayOffset);
+  //rob - from the docs, assumes 8bit color
+  bufferData.pixelArraySize = (Math.floor((8 * bufferData.width + 31) / 32) * 4) * bufferData.height;
 
   return bufferData;
 };
