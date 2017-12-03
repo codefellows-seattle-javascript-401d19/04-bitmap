@@ -9,6 +9,7 @@ const bwTransform = require('./lib/bwtransform');
 const flipColors = require('./lib/flipcolors');
 const addContrast = require('./lib/addcontrast');
 const randomColors = require('./lib/randomcolors');
+const help = require('./lib/help');
 const fs = require('fs');
 
 let file = 'non-palette-bitmap.bmp';
@@ -85,3 +86,8 @@ let file = 'non-palette-bitmap.bmp';
   });
 });
 console.log('hello!');
+process.argv.forEach((e, i) => {
+  console.log(`${i}: ${e}`);
+});
+
+if (process.argv.length === 3 && process.argv[2] === 'help') help.help();
