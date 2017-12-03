@@ -3,10 +3,10 @@
 #### 11/30/17 - Anthony Robinson & Robert Reed
 
 
-Usage: run in terminal `node index.js <input file name> <desired output file name> <transformation>`
+Usage: run in terminal `node index.js <input file name> <output file name> <transformation>`
 
 `<input file name>` must exist in the __test__/assets folder
-`<desired output file name>` will be generated in the __test__/assets folder
+`<output file name>` will be generated in the __test__/assets folder
 `<transformation>` must exist in the below Transformations list.
 
 Transformations:
