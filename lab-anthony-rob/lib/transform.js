@@ -10,6 +10,15 @@ transforms.grayscaleAvg = bmpData => {
   }
 };
 
+transforms.grayscaleLum = bmpData => {
+  let buff = bmpData.colorPaletteBuffer;
+  for(let i = 0; i < buff.length; i += 4) {
+    let lumosity = ((buff[i] * 0.07) + (buff[i + 1] * 0.72) + (buff[i + 2] * 0.21));
+    buff[i] = buff[i + 1] = buff[i + 2] = lumosity;
+    console.log(bmpData.colorPaletteBuffer);
+  }
+};
+
 transforms.invert = bmpData => {
   let buff = bmpData.colorPaletteBuffer;
   for(let i = 0; i < buff.length; i += 4) {
