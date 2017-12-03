@@ -13,6 +13,15 @@ describe('transform.js', () => {
     ]));
   });
 
+  test('The grayscaleLum transform should multiply each value of rgb by a specific numerator and reassigns the average of each rgb\'s r, g, & b values to each color in the object\'s color palette.', () => {
+    transform(asset.testData1, ['grayscaleLum']);
+    expect(asset.testData1.colorPaletteBuffer).toEqual(Buffer.from([
+      84, 84, 84, 0,
+      84, 84, 84, 0,
+      84, 84, 84, 0,
+    ]));
+  });
+
   test('The invert transform should replace each r, g, and b value with its distance from 255 for each rgb value in the color palette.', () => {
     transform(asset.testData2, ['invert']);
     expect(asset.testData2.colorPaletteBuffer).toEqual(Buffer.from([
