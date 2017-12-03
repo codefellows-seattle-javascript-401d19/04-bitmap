@@ -15,7 +15,7 @@ module.exports = (buffer) => {
     width: buffer.readInt32LE(WIDTH_OFFSET),
     height: buffer.readInt32LE(HEIGHT_OFFSET),
   };
-  bufferData.colorPalletteBuffer = buffer.slice(COLOR_TABLE_OFFSET, bufferData.pixelArrayOffset);
+  bufferData.colorPaletteBuffer = buffer.slice(COLOR_TABLE_OFFSET, bufferData.pixelArrayOffset);
 
   return bufferData;
 };

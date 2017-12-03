@@ -12,7 +12,7 @@ describe('parser.js', () => {
       pixelArrayOffset: 66,
       width: 100,
       height: 150,
-      colorPalletteBuffer: Buffer.from(asset.testBufferColorPallette),
+      colorPaletteBuffer: Buffer.from(asset.testBufferColorPalette),
     };
     expect(parser(asset.testBuffer)).toEqual(testData);
   });
