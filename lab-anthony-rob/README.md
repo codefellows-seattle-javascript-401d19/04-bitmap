@@ -3,7 +3,7 @@
 #### 11/30/17 - Anthony Robinson & Robert Reed
 
 
-Usage: run in terminal `node index.js <input file name> <output file name> <transformation>`
+Usage: run in terminal `node index.js <input file name> <output file name> <transformation 1>...<transformation n>`
 
 `<input file name>` must exist in the __test__/assets folder
 `<output file name>` will be generated in the __test__/assets folder
@@ -18,19 +18,16 @@ example: node index.js bitmap.bmp bitmap-output.bmp grayscaleAvg
 
 The user also has the ability to run multiple transforms
 
-example: node index.js bitmap.bmp bitmap-output.bmp grayscaleAvg invert grayscalLum etc..
+example: node index.js bitmap.bmp bitmap-output.bmp grayscaleAvg invert grayscaleLum etc..
 
 Modules:
 
 parser.js - exports a function that returns an object based off of buffer data which is read from index.js.
-  It has an arity of one and it accepts a buffer as it's argument. The parser will not return an odject if
-  incomplete buffer data is used.
+  It has an arity of one and it accepts a buffer as it's argument. The parser will not return an object if incomplete buffer data is used.
 
-transform.js - exports buffer data based on the transforms used. It has an arity of one and it accepts any
-  number of valid transform strings otherwise it throws an error when the transform string does not exist.
+transform.js - exports a function that modifies the buffer data based on the transforms used. It has an arity of one and it accepts any number of valid transform strings wrapped in an array, otherwise it throws an error when the transform string does not exist.
 
-index.js - utilizes fs.readFile to read a buffer from a file which parser.js uses. When the buffer is
-  passed back to index from transform.js it writes the file based on the CLI input from the user.
+index.js - utilizes fs.readFile to read a buffer from a file which parser.js uses. When the buffer is passed back to index from transform.js it performs the requested transforms and writes the file based on the CLI input from the user.
 
 Transformation algorithm source:
 https://www.johndcook.com/blog/2009/08/24/algorithms-convert-color-grayscale/
