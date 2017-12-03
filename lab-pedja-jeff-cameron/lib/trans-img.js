@@ -8,18 +8,20 @@ transImg.transFile = (transformName, constructedBitmap, callback) => {
   switch (transformName) {
   case 'greyscale':
     greyscale(colorTable);
+    callback(null, constructedBitmap);
     break;
   case 'invert':
     invert(colorTable);
+    callback(null, constructedBitmap);
     break;
   case 'acid':
     acid(colorTable);
+    callback(null, constructedBitmap);
     break;
   default:
     callback('Please use one of the following values: \n greyscale \n invert \n acid');
+    break;
   }
-
-  callback(null, constructedBitmap);
 };
 
 
