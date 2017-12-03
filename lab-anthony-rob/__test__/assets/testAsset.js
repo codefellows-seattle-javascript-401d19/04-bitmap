@@ -2,7 +2,6 @@
 
 // export the module so we can use it to test with
 const asset = module.exports = {};
-const fs = require('fs');
 
 // I think the only thing you need to change in this one is the offset to the pixel table. See last row of entries to figure out how to calculate it
 let bmpHeader = [
@@ -57,39 +56,17 @@ let bmpBuffer = Buffer.from(bmpArray);
 
 // export the buffer so we can test with it.
 asset.testBuffer = bmpBuffer;
+asset.testBufferColorPallette = Buffer.from(colorPallette);
 
-
-// testBufferValues(bmpBuffer); // This will show you what the values should be if you run it. Should be the same as below, after the function.
-
-// function testBufferValues(buffer) {
-//   console.log('Buffer Array:', buffer);
-//   // console.log('Buffer as Hex:', buffer.toString('hex'));
-//   console.log('FileType:', buffer.toString('utf8', 0, 2));
-//   console.log('FileSize in bytes:', buffer.readInt32LE(2)); 
-//   console.log('Offset to Pixel Table:', buffer.readInt32LE(10));
-//   console.log('DIB Header size:', buffer.readInt32LE(14));
-//   console.log('Bitmap width in pixels:', buffer.readInt32LE(18));
-//   console.log('Bitmap height in pixels:', buffer.readInt32LE(22));
-//   console.log('Number of colors in the color palette:', buffer.readInt32LE(46));
+// function writeTestFile(buffer) {
+//   const fs = require('fs');
+//   fs.writeFile(`${__dirname}/bmp-test.bmp`, buffer, (error) => {
+//     if (error) {
+//       console.error(`\n${error}`);
+//       return;
+//     }
+//     console.log(`Test file has been written successfully.`);
+//   });
 // }
 
-function writeTestFile(buffer) {
-  fs.writeFile(`${__dirname}/bmp-test.bmp`, buffer, (error) => {
-    if (error) {
-      console.error(`\n${error}`);
-      return;
-    }
-    console.log(`Test file has been written successfully.`);
-  });
-}
-
-writeTestFile(bmpBuffer);
-
-// Results for the test buffer above:
-// FileType: BM
-// FileSize in bytes: 15066
-// Offset to Pixel Table: 66
-// DIB Header size: 40
-// Bitmap width in pixels: 100
-// Bitmap height in pixels: 150
-// Number of colors in the color palette: 3
+// writeTestFile(bmpBuffer);
