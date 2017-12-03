@@ -6,6 +6,24 @@ const WIDTH_OFFSET = 18;
 const HEIGHT_OFFSET = 22;
 const COLOR_TABLE_OFFSET = 54;
 
+// let makePixelArray = bufferData => {
+//   let pixelArray = [];
+//   // rob - split the pixel array buffer up by row
+//   for(let i = 0; i < bufferData.height; i++) {
+//     pixelArray.push(bufferData.pixelArrayBuffer.slice(i * bufferData.pixelArrayRowLength, (i + 1) * bufferData.pixelArrayRowLength));
+//   }
+
+//   //convert each row into a normal array
+//   pixelArray = pixelArray.map(buffer => {
+//     let bufferAsArray = [];
+//     for(let i = 0; i < buffer.length; i++)
+//       bufferAsArray.push(buffer[i]);
+//     return bufferAsArray;
+//   });
+
+//   return pixelArray;
+// };
+
 module.exports = (buffer) => {
   const bufferData = {
     buffer: buffer,
@@ -17,8 +35,10 @@ module.exports = (buffer) => {
   };
   bufferData.colorPaletteBuffer = buffer.slice(COLOR_TABLE_OFFSET, bufferData.pixelArrayOffset);
   //rob - from the docs, assumes 8bit color
-  bufferData.pixelArraySize = (Math.floor((8 * bufferData.width + 31) / 32) * 4) * bufferData.height;
+  bufferData.pixelArrayRowLength = Math.floor((8 * bufferData.width + 31) / 32) * 4;
+  bufferData.pixelArraySize = bufferData.pixelArrayRowLength * bufferData.height;
   bufferData.pixelArrayBuffer = buffer.slice(bufferData.pixelArrayOffset, bufferData.pixelArrayOffset + bufferData.pixelArraySize);
+  // bufferData.pixelArray = makePixelArray(bufferData);
 
   return bufferData;
 };

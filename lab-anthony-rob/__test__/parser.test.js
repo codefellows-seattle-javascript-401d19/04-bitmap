@@ -15,6 +15,9 @@ describe('parser.js', () => {
         testPixelArray.push(2);
     }
   }
+
+  // let testPixelArrayFormatted = [];
+
   test('Parser should return an object containing the metadata from a buffer.', () => {
     let testData = {
       buffer: asset.testBuffer,
@@ -24,8 +27,10 @@ describe('parser.js', () => {
       width: 100,
       height: 150,
       colorPaletteBuffer: Buffer.from(asset.testBufferColorPalette),
+      pixelArrayRowLength: 100,
       pixelArraySize: 15000,
       pixelArrayBuffer: Buffer.from(testPixelArray),
+      // pixelArray: testPixelArrayFormatted,
     };
     expect(parser(asset.testBuffer)).toEqual(testData);
   });
