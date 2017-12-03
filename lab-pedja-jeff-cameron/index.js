@@ -31,5 +31,4 @@ readImg.getFile(inputFilePath, (error, data) => {
       console.log('===> Transform complete!');
     });
   });
-
 });

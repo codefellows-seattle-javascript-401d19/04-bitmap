@@ -41,8 +41,4 @@ describe('read-img.js', () => {
       done();
     });
   });
-
-
-  // invalid path
-  // good path with bitMap props
 });
