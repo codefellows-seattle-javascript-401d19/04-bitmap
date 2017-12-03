@@ -1,8 +1,8 @@
 'use strict';
 
-const grayscale = module.exports = {};
+const transformMods = {};
 
-grayscale.parsedBitmap = (buffer) => {
+grayscale.parseBitmap = (buffer) => {
   let parsedBitmap = {};
 
   parsedBitmap.colorTable.forEach((value, position, array) => {
@@ -18,9 +18,6 @@ grayscale.parsedBitmap = (buffer) => {
       parsedBitmap.colorTable.writeUInt8((array[position - 3]), position);
     }
 
-
-
   });
   return parsedBitmap;
-
 };

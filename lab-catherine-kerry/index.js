@@ -2,7 +2,9 @@
 
 const bitmap = require('./lib/bitmap');
 const fs = require('fs');
-let image = 'house.bmp';
+const image = 'house.bmp';
+// const myArgs = process.argv.slice();
+
 
 fs.readFile(`${__dirname}/__test__/asset/${image}`, (error,data) => {
   if(error)
@@ -13,6 +15,7 @@ fs.readFile(`${__dirname}/__test__/asset/${image}`, (error,data) => {
 
   let parsedBitmap = bitmap.parseBitmap(data);
   console.log(parsedBitmap);
+  transformMods(parsedBitmap)
 
   fs.writeFile(`${__dirname}/__test__/asset/test${image}`, data, error => {
     if(error)
