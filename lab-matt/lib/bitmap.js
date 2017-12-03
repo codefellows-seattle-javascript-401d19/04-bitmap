@@ -112,11 +112,10 @@ transform.randomize = (colorPalette) => {
 
 transform.grayscale = (colorPalette) => {
   // Red=30%, Green=59%, Blue=11% --- https://www.gimp.org/tutorials/Color2BW/#channelmixer
+
   for (let i = 0; i < colorPalette.length; i += 4) {
     colorPalette.fill(
-      (colorPalette[i]*.11) + 
-      (colorPalette[i+1]*.59) + 
-      (colorPalette[i+2])*.30, 
+      (colorPalette[i] + 1), 
       i, i+3);
-  }
+  } 
 };
