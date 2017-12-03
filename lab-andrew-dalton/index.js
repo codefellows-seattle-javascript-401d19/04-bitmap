@@ -87,9 +87,7 @@ index.randomColors = () => {
     });
   });
 };
-// process.argv.forEach((e, i) => {
-//   console.log(`${i}: ${e}`);
-// });
+
 let errorCounter = 0;
 
 if (process.argv.length === 3 && process.argv[2] === 'help') help.help();
