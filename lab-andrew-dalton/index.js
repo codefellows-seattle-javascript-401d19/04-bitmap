@@ -17,7 +17,7 @@ let saveLoc = process.argv[3];
 let command = process.argv[4];
 
 index.bwTransformer = () => {
-  fs.readFile(`${__dirname}/${file}`, (error, data) => {
+  fs.readFile(file, (error, data) => {
     if (error){
       console.error(error);
       return;
@@ -25,7 +25,7 @@ index.bwTransformer = () => {
 
     let parsedBitmap = bitmap.parseBitmap(data);
     let bwTransformed = bwTransform.transform(parsedBitmap);
-    fs.writeFile(`${__dirname}/${saveLoc}`, bwTransformed.buffer, error => {
+    fs.writeFile(saveLoc, bwTransformed.buffer, error => {
       if (error){
         console.error(error);
         return;
@@ -35,7 +35,7 @@ index.bwTransformer = () => {
 };
 
 index.flipColors = () => {
-  fs.readFile(`${__dirname}/${file}`, (error, data) => {
+  fs.readFile(file, (error, data) => {
     if (error){
       console.error(error);
       return;
@@ -43,7 +43,7 @@ index.flipColors = () => {
 
     let parsedBitmap = bitmap.parseBitmap(data);
     let flippedColors = flipColors.transform(parsedBitmap);
-    fs.writeFile(`${__dirname}/${saveLoc}`, flippedColors.buffer, error => {
+    fs.writeFile(saveLoc, flippedColors.buffer, error => {
       if (error){
         console.error(error);
         return;
@@ -53,7 +53,7 @@ index.flipColors = () => {
 };
 
 index.addContrast = () => {
-  fs.readFile(`${__dirname}/${file}`, (error, data) => {
+  fs.readFile(file, (error, data) => {
     if (error){
       console.error(error);
       return;
@@ -61,7 +61,7 @@ index.addContrast = () => {
 
     let parsedBitmap = bitmap.parseBitmap(data);
     let addedContrast = addContrast.transform(parsedBitmap);
-    fs.writeFile(`${__dirname}/${saveLoc}`, addedContrast.buffer, error => {
+    fs.writeFile(saveLoc, addedContrast.buffer, error => {
       if (error){
         console.error(error);
         return;
@@ -71,7 +71,7 @@ index.addContrast = () => {
 };
 
 index.randomColors = () => {
-  fs.readFile(`${__dirname}/${file}`, (error, data) => {
+  fs.readFile(file, (error, data) => {
     if (error){
       console.error(error);
       return;
@@ -79,7 +79,7 @@ index.randomColors = () => {
 
     let parsedBitmap = bitmap.parseBitmap(data);
     let randomizedColors = randomColors.transform(parsedBitmap);
-    fs.writeFile(`${__dirname}/${saveLoc}`, randomizedColors.buffer, error => {
+    fs.writeFile(saveLoc, randomizedColors.buffer, error => {
       if (error){
         console.error(error);
         return;
@@ -90,12 +90,20 @@ index.randomColors = () => {
 // process.argv.forEach((e, i) => {
 //   console.log(`${i}: ${e}`);
 // });
+let errorCounter = 0;
 
 if (process.argv.length === 3 && process.argv[2] === 'help') help.help();
 if (process.argv.length > 5) console.log('invalid syntax, type \'bmptransform help\' for more info');
+if (file.slice(-3) !== 'bmp' || saveLoc.slice(-3) !== 'bmp') {
+  errorCounter++;
+  console.log(file, saveLoc);
+  console.log('you must specify a \'.bmp\' as both the file to read and the file to save');
+}
 
-if (command === 'addcontrast') index.addContrast();
-if (command === 'bwtransform') index.bwTransformer();
-if (command === 'flipcolors') index.flipColors();
-if (command === 'randomcolors') index.randomColors();
-else console.log('type \'bmptransform help\' for available transform types');
+if (errorCounter < 1) {
+  if (command === 'addcontrast') index.addContrast();
+  if (command === 'bwtransform') index.bwTransformer();
+  if (command === 'flipcolors') index.flipColors();
+  if (command === 'randomcolors') index.randomColors();
+  else console.log('type \'bmptransform help\' for available transform types');
+}
