@@ -31,3 +31,6 @@ transform.js - exports buffer data based on the transforms used. It has an arity
 
 index.js - utilizes fs.readFile to read a buffer from a file which parser.js uses. When the buffer is
   passed back to index from transform.js it writes the file based on the CLI input from the user.
+
+Transformation algorithm source:
+https://www.johndcook.com/blog/2009/08/24/algorithms-convert-color-grayscale/
