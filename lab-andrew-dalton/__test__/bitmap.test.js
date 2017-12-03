@@ -18,7 +18,4 @@ describe('lib/bitmap.js', () => {
       });
     });
   });
-
-  // describe('')
-
 });

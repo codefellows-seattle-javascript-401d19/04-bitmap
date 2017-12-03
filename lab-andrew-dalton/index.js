@@ -111,4 +111,6 @@ let commandArr = ['addcontrast', 'bwtransform', 'flipcolors', 'randomcolors'];
 
 if (commandArr.indexOf(command) === -1){
   console.log('type \'bmptransform help\' for available transform types');
+} else {
+  console.log('Transformation successful!');
 }

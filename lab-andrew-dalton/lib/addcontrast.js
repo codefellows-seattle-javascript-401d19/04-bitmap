@@ -12,8 +12,6 @@ addContrast.transform = parsedBuffer => {
     }
     colorArray.sort((a, b) => a - b);
     let divisor = parseInt(255 / (colorArray.length - 1));
-    console.log(colorArray);
-    console.log(divisor);
     const mappedArray = colorArray.map((e, i) => {
       return divisor * i;
     });
