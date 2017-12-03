@@ -23,7 +23,7 @@ describe('write-img.js', () => {
   });
 
   test('return null error if the file is written successfully', (done) => {
-    const outputFilePath = 'output/test.txt';
+    const outputFilePath = '__test__/output/test.txt';
     const outputData = {};
     outputData.buffer = 'test string';
     writeFile(outputFilePath, outputData, (error) => {
