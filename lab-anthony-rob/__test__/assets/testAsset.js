@@ -60,3 +60,4 @@ asset.testBufferColorPalette = Buffer.from(colorPalette);
 asset.testData1 = {colorPaletteBuffer: Buffer.from(colorPalette)};
 asset.testData2 = {colorPaletteBuffer: Buffer.from(colorPalette)};
 asset.testData3 = {colorPaletteBuffer: Buffer.from(colorPalette)};
+asset.testData4 = {colorPaletteBuffer: Buffer.from(colorPalette)};

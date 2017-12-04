@@ -13,6 +13,15 @@ describe('transform.js', () => {
     ]));
   });
 
+  test('The grayscaleSoft transform should take the value from the blue channel and assign it to red and green as well.', () => {
+    transform(asset.testData4, ['grayscaleSoft']);
+    expect(asset.testData4.colorPaletteBuffer).toEqual(Buffer.from([
+      255, 255, 255, 0,
+      0, 0, 0, 0,
+      0, 0, 0, 0,
+    ]));
+  });
+
   test('The grayscaleLum transform should multiply each value of rgb by a specific numerator and reassigns the average of each rgb\'s r, g, & b values to each color in the object\'s color palette.', () => {
     transform(asset.testData1, ['grayscaleLum']);
     expect(asset.testData1.colorPaletteBuffer).toEqual(Buffer.from([

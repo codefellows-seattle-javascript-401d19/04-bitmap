@@ -2,6 +2,14 @@
 
 const transforms = {};
 
+transforms.grayscaleSoft = bmpData => {
+  let buff = bmpData.colorPaletteBuffer;
+  for (let i = 0; i < buff.length; i += 4) {
+    buff[i + 1] = buff[i];
+    buff[i + 2] = buff[i];
+  }
+};
+
 transforms.grayscaleAvg = bmpData => {
   let buff = bmpData.colorPaletteBuffer;
   for(let i = 0; i < buff.length; i += 4) {
