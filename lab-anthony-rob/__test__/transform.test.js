@@ -22,6 +22,15 @@ describe('transform.js', () => {
     ]));
   });
 
+  test('The red transform should add full red to each color in the palette.', () => {
+    transform(asset.testData5, ['red']);
+    expect(asset.testData5.colorPaletteBuffer).toEqual(Buffer.from([
+      255, 0, 255, 0,
+      0, 255, 255, 0,
+      0, 0, 255, 0,
+    ]));
+  });
+
   test('The grayscaleLum transform should multiply each value of rgb by a specific numerator and reassigns the average of each rgb\'s r, g, & b values to each color in the object\'s color palette.', () => {
     transform(asset.testData1, ['grayscaleLum']);
     expect(asset.testData1.colorPaletteBuffer).toEqual(Buffer.from([

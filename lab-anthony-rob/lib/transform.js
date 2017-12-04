@@ -10,6 +10,13 @@ transforms.grayscaleSoft = bmpData => {
   }
 };
 
+transforms.red = bmpData => {
+  let buff = bmpData.colorPaletteBuffer;
+  for (let i = 0; i < buff.length; i += 4) {
+    buff[i + 2] = 255;
+  }
+};
+
 transforms.grayscaleAvg = bmpData => {
   let buff = bmpData.colorPaletteBuffer;
   for(let i = 0; i < buff.length; i += 4) {
