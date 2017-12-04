@@ -2,6 +2,9 @@
 
 const asset = require('./assets/testAsset');
 const parser = require('../lib/parser');
+console.log(parser(asset.testBuffer).pixelArray);
+
+
 
 describe('parser.js', () => {
   let testPixelArray = [];

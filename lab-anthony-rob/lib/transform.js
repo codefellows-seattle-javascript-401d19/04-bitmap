@@ -2,6 +2,15 @@
 
 const transforms = {};
 
+transforms.flipY = bmpData => {
+  let tempBuff, array = bmpData.pixelArray;
+  for(let i = 0; i < Math.floor(array.length / 2); i++) {
+    tempBuff = Buffer.from(array[i]);
+    array[array.length - 1 - i].copy(array[i]);
+    tempBuff.copy(array[array.length - 1 - i]);
+  }
+};
+
 transforms.grayscaleAvg = bmpData => {
   let buff = bmpData.colorPaletteBuffer;
   for(let i = 0; i < buff.length; i += 4) {
