@@ -1,0 +1,19 @@
+{
+  "name": "lab-phelan",
+  "version": "1.0.0",
+  "description": "Lab 04",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "jest --coverage"
+  },
+  "author": "Phelan Carey",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^4.12.1",
+    "jest": "^21.2.1"
+  },
+  "dependencies": {}
+}
