@@ -30,3 +30,5 @@ indexJS.transformImage = (inputPath, outputPath, transforms) => {
       bitmapTransformer.renderNewFile(outputPath, parsedBitmap.buffer);
     });
 }
+
+indexJS.transformImage(args[0], args[1], args.slice(2));
