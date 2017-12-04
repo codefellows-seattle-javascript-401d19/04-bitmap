@@ -22,6 +22,5 @@ bitmap.parseBitmap = buffer => {
   parsedBitmap.height = buffer.readInt32LE(HEIGHT_OFFSET);
   parsedBitmap.colorTable = buffer.slice(54, parsedBitmap.pixelTableOffset);
 
-  // console.log(parsedBitmap);
   return parsedBitmap;
 };

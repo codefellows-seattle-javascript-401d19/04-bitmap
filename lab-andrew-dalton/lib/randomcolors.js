@@ -39,7 +39,6 @@ randomColors.transform = parsedBuffer => {
           redArr.push(value);
         }
       }
-      // parsedBuffer.colorTable.writeUInt8((255 - value), index);
     });
 
     const blueMap = blueArr.map(() => {

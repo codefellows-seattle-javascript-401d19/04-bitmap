@@ -16,9 +16,6 @@ bwTransform.transform = parsedBuffer => {
     }
   } else {
     parsedBuffer.colorTable.forEach((value, index, array) => {
-      // if (index % 4 === 0){
-      //   parsedBuffer.colorTable.writeUInt8(index / 4, index);
-      // }
       if (index % 4 === 1){
         parsedBuffer.colorTable.writeUInt8(array[index - 1], index);
       }
