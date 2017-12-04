@@ -17,6 +17,20 @@ transforms.red = bmpData => {
   }
 };
 
+transforms.blue = bmpData => {
+  let buff = bmpData.colorPaletteBuffer;
+  for (let i = 0; i < buff.length; i += 4) {
+    buff[i] = 255;
+  }
+};
+
+transforms.green = bmpData => {
+  let buff = bmpData.colorPaletteBuffer;
+  for (let i = 0; i < buff.length; i += 4) {
+    buff[i + 1] = 255;
+  }
+};
+
 transforms.grayscaleAvg = bmpData => {
   let buff = bmpData.colorPaletteBuffer;
   for(let i = 0; i < buff.length; i += 4) {

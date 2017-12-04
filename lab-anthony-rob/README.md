@@ -15,6 +15,9 @@ grayscaleSoft  *this is the best of the grayscale transformations
 grayscaleAvg
 grayscaleLum
 invert
+red
+green
+blue
 
 example: node index.js bitmap.bmp bitmap-output.bmp grayscaleAvg
 

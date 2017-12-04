@@ -62,3 +62,5 @@ asset.testData2 = {colorPaletteBuffer: Buffer.from(colorPalette)};
 asset.testData3 = {colorPaletteBuffer: Buffer.from(colorPalette)};
 asset.testData4 = {colorPaletteBuffer: Buffer.from(colorPalette)};
 asset.testData5 = {colorPaletteBuffer: Buffer.from(colorPalette)};
+asset.testData6 = {colorPaletteBuffer: Buffer.from(colorPalette)};
+asset.testData7 = {colorPaletteBuffer: Buffer.from(colorPalette)};
