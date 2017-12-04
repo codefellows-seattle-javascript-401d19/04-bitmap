@@ -8,14 +8,6 @@ let files = fs.readdirSync('./__test__/assets/', (err, data) => {
   return data;
 });
 
-
-// ------------- TEST CONNECTION -------------------
-describe('first test', () => {
-  test('there is life', () => {
-    expect(bitmap.helloWorld()).toEqual('life');
-  });
-});
-
 // ------------- CODE -------------------
 describe('testing fs.readdir reads all files in a folder and returns an array', () => {
   test('fs.readdir(\'assets/', () => {
@@ -25,7 +17,7 @@ describe('testing fs.readdir reads all files in a folder and returns an array', 
 
 describe('testing buffering file returns data', () => {
   test('buffer - type is equal to "BM" and has other properties', (done) => {
-    bitmap.bufferFile(files[2], 'invert', (data) => {
+    bitmap.bufferFile(`./__test__/assets/${files[2]}`, 'grayscale', `${__dirname}/../created_files/`, (data) => {
       console.log(data.buffer);
       expect(data.type).toEqual('BM');
       expect(data.fileSize).not.toBeNull();
@@ -41,9 +33,9 @@ describe('testing buffering file returns data', () => {
 
 describe('file formatting', () => {
   test('returning just the file name if given either filepath and/or filename.extension', () => {
-    expect('/desktop/example/lib/fileName.txt'.match(/\w+(?=\.)/)[0]).toEqual('fileName');
-    expect('fileName.txt'.match(/\w+(?=\.)/)[0]).toEqual('fileName');
-    
-    // file = file.match(/.[^.]+/);
+    expect('/desktop/example/lib/fileName.txt'.match(/[\w-]+(?=\.)/)[0]).toEqual('fileName');
+    expect('/desktop/example/lib/file-Name.txt'.match(/[\w-]+(?=\.)/)[0]).toEqual('file-Name');
+    expect('fileName.txt'.match(/[\w-]+(?=\.)/)[0]).toEqual('fileName');
+    expect('file-Name.txt'.match(/[\w-]+(?=\.)/)[0]).toEqual('file-Name');
   });
 });

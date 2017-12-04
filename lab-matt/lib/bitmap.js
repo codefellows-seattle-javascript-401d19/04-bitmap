@@ -4,15 +4,10 @@ const bitmap = module.exports = {};
 const fs = require('fs');
 const transform = {};
 
-// ------------ TEST ----------------
-bitmap.helloWorld = () => {
-  return 'life';
-};
-
 // -------------- CODE ------------------
-bitmap.bufferFile = (file, transformation, callback) => {
+bitmap.bufferFile = (filePath, transformation, destination, callback) => {
   // mattL - fs.readFile creates the buffer object and returns it as data
-  fs.readFile(`${__dirname}/../__test__/assets/${file}`, (err, data) => {
+  fs.readFile(`${filePath}`, (err, data) => {
     if (err) throw err;
 
     // newly created buffer object with specific properties
@@ -20,28 +15,31 @@ bitmap.bufferFile = (file, transformation, callback) => {
     console.log('BITMAP OBJECT:', parsedBitmap, '\n');
 
     // mattL - switch case to determine which transformation to use
-    let transformationFileName;
+    let transformationName;
     switch (transformation) {
     case ('invert'):
-      transformationFileName = 'inverted';
+      transformationName = 'inverted';
       transform.invertColors(parsedBitmap.colorPalette);
       break;
     case ('random'):
-      transformationFileName = 'randomized';    
+      transformationName = 'randomized';    
       transform.randomize(parsedBitmap.colorPalette);
       break;
     case ('grayscale'):
-      transformationFileName = 'grayscale';
+      transformationName = 'grayscale';
       transform.grayscale(parsedBitmap.colorPalette);
       break;
     }
 
     // mattL - removing the '.<filetype>' with regex if exists so I can use any type later
-    file = file.match(/.[^.]+/);
+    let fileName = filePath.match(/[\w-_]+(?=\.)/)[0];
     // mattL - writing newly updated file with <transformationName>ed-<fileName> - if there's an error, .log it
-    fs.writeFile(`${__dirname}/../created_files/${transformationFileName}-${file}.bmp`, parsedBitmap.buffer, err => { if (err) console.log(err); });
-    fs.writeFile(`${__dirname}/../created_files/dev_information/buffer-${file}.json`, JSON.stringify(parsedBitmap.buffer), err => { if (err) console.log(err); });
-    fs.writeFile(`${__dirname}/../created_files/dev_information/palette-${file}.txt`, JSON.stringify(parsedBitmap.colorPalette), err => { if (err) console.log(err); });
+    fs.writeFile(`${destination}${transformationName}-${fileName}.bmp`, parsedBitmap.buffer, err => { if (err) console.log(err); });
+
+    // --- DEV INFORMATION: prints out complete buffer as json and color palette as txt document ---
+    // fs.writeFile(`${__dirname}/../created_files/dev_information/buffer-${fileName}.json`, JSON.stringify(parsedBitmap.buffer), err => { if (err) console.log(err); });
+    // fs.writeFile(`${__dirname}/../created_files/dev_information/palette-${fileName}.txt`, JSON.stringify(parsedBitmap.colorPalette), err => { if (err) console.log(err); });
+    // --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
   
     // mattL - parsedBitmap is object containing all properties of the buffer
     if (callback) callback(parsedBitmap);
