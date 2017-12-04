@@ -36,13 +36,13 @@ For this assignment you will be building a bitmap (`.bmp`) transformer CLI. It w
 * The CLI should log a success message on completion
 
 ## Testing 
-* Use TDD `describe` and `test` methods to define descriptive tests and increase readablity
+* Use TDD `describe` and `test` methods to define descriptive tests and increase readability
 * Each `test` callback should aim to test a small well defined feature of a function
 * Write tests to ensure each function behaves correctly with valid and invalid inputs
 * The CLI should be tested without using `child_process` or any equivilant third party libraries
 
 ##  Documentation
-In your README.md describe the exported values of each module you have defined. Every function description should include it's arity (expected number of paramiters), the expected data for each parameter (data-type and limitations), and it's behavior (for both valid and invalid use). Feel free to write any additional information in your README.md.
+In your README.md describe the exported values of each module you have defined. Every function description should include it's arity (expected number of parameters), the expected data for each parameter (data-type and limitations), and it's behavior (for both valid and invalid use). Feel free to write any additional information in your README.md.
 
 ## Tips
 You will want to define a strategy for solving the problem before you begin to code. Once you have a strategy defined, you can break it down into steps that can be split into helper modules. Each helper module should solve a small specific problem. The main module should utilize the helper modules to execute your original strategy.
