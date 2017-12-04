@@ -1,11 +1,22 @@
+#!/usr/bin/env node
 'use strict';
 
 const fs = require('fs');
+const program = require('commander');
 const bitmap = require('./lib/bitmap');
-let files = fs.readdirSync('./__test__/assets/');
+// let files = fs.readdirSync('./__test__/assets/');
 
-bitmap.bufferFile(files[3], 'grayscale');
+program.arguments('<file_location> <invert|grayscale|random> <file_destination>')
+  .action((fileLocation, transformationType, fileDestination) => {
+    console.log(`${fileLocation} - ${transformationType} - ${fileDestination}`);
+  })
+  .parse(process.argv);
 
-let myCLI = function(input_file_path, output_file_path, transform_name) {
 
-};
+
+
+// bitmap.bufferFile(files[3], 'random');
+
+// for (let i in files) {
+//   bitmap.bufferFile(files[i], 'random');
+// }

@@ -26,7 +26,7 @@ bitmap.bufferFile = (file, transformation, callback) => {
       transformationFileName = 'inverted';
       transform.invertColors(parsedBitmap.colorPalette);
       break;
-    case ('randomize'):
+    case ('random'):
       transformationFileName = 'randomized';    
       transform.randomize(parsedBitmap.colorPalette);
       break;

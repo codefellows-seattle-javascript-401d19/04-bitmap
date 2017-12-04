@@ -39,3 +39,11 @@ describe('testing buffering file returns data', () => {
   });
 });
 
+describe('file formatting', () => {
+  test('returning just the file name if given either filepath and/or filename.extension', () => {
+    expect('/desktop/example/lib/fileName.txt'.match(/\w+(?=\.)/)[0]).toEqual('fileName');
+    expect('fileName.txt'.match(/\w+(?=\.)/)[0]).toEqual('fileName');
+    
+    // file = file.match(/.[^.]+/);
+  });
+});
