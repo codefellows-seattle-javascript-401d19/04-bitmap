@@ -4,7 +4,7 @@ const flipColors = require('../lib/flipcolors');
 
 describe('lib/flipcolors.js', () => {
 
-  describe('testing flipcolors.transform to return grayscale values', () => {
+  describe('testing flipcolors.transform to return inverted values', () => {
     test('function should return expected values for bitmap with color table', () => {
       const testArr = {};
       testArr.buffer = new Buffer([0, 0, 20, 0, 30, 34, 88, 0]);

@@ -2,7 +2,7 @@
 'use strict';
 
 
-const index = {};
+const index = module.exports = {};
 
 const bitmap = require('./lib/bitmap');
 const bwTransform = require('./lib/bwtransform');
