@@ -2,6 +2,7 @@
 
 // export the module so we can use it to test with
 const asset = module.exports = {};
+const parse = require('../../lib/parser');
 
 // I think the only thing you need to change in this one is the offset to the pixel table. See last row of entries to figure out how to calculate it
 let bmpHeader = [
@@ -50,12 +51,16 @@ for(let row = 0; row < 150; row++) {
 
 // Combine all of these arrays into a single array.
 let bmpArray = bmpHeader.concat(dibHeader).concat(colorPalette).concat(pixelArray);
+let bmpArrayFLipY = bmpHeader.concat(dibHeader).concat(colorPalette).concat(pixelArray.reverse());
 
 // Make a buffer from the array, so we can write it to a file.
 let bmpBuffer = Buffer.from(bmpArray);
+let bmpBufferFlipY = Buffer.from(bmpArrayFLipY);
 
 // export the buffer so we can test with it.
 asset.testBuffer = bmpBuffer;
+asset.testBufferFlipY = bmpBufferFlipY;
+asset.testDataFlipY = parse(bmpBufferFlipY);
 asset.testBufferColorPalette = Buffer.from(colorPalette);
 asset.testData1 = {colorPaletteBuffer: Buffer.from(colorPalette)};
 asset.testData2 = {colorPaletteBuffer: Buffer.from(colorPalette)};

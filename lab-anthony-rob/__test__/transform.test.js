@@ -31,6 +31,11 @@ describe('transform.js', () => {
     ]));
   });
 
+  test('The flipY transform should reverse the order of rows in the pixel array', () => {
+    transform(asset.testDataFlipY, ['flipY']);
+    expect(asset.testDataFlipY.buffer).toEqual(asset.testBufferFlipY);
+  });
+
   test('Transform should be able to apply multiple transforms to the same data object.', () => {
     transform(asset.testData3, ['invert', 'grayscaleAvg']);
     expect(asset.testData3.colorPaletteBuffer).toEqual(Buffer.from([

@@ -2,8 +2,17 @@
 
 const transforms = {};
 
+let makePixelArray = bufferData => {
+  let pixelArray = [];
+  for (let i = 0; i < bufferData.height; i++) {
+    pixelArray.push(bufferData.pixelArrayBuffer.slice(i * bufferData.pixelArrayRowLength, (i + 1) * bufferData.pixelArrayRowLength));
+  }
+
+  return pixelArray;
+};
+
 transforms.flipY = bmpData => {
-  let tempBuff, array = bmpData.pixelArray;
+  let tempBuff, array = makePixelArray(bmpData);
   for(let i = 0; i < Math.floor(array.length / 2); i++) {
     tempBuff = Buffer.from(array[i]);
     array[array.length - 1 - i].copy(array[i]);

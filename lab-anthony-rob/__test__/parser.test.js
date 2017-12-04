@@ -2,9 +2,6 @@
 
 const asset = require('./assets/testAsset');
 const parser = require('../lib/parser');
-console.log(parser(asset.testBuffer).pixelArray);
-
-
 
 describe('parser.js', () => {
   let testPixelArray = [];
@@ -19,7 +16,9 @@ describe('parser.js', () => {
     }
   }
 
-  // let testPixelArrayFormatted = [];
+  let testPixelArrayFormatted = [];
+  // for(let i = 0; i < 150; i++)
+  //   testPixelArrayFormatted.push(testPixelArray.slice(i * 100, (1 + 1) * 100));
 
   test('Parser should return an object containing the metadata from a buffer.', () => {
     let testData = {
