@@ -29,6 +29,22 @@ example: `node index.js bitmap.bmp bitmap-output.bmp grayscaleAvg invert graysca
 
 Try chaining together multiple color transforms to get interesting compounding effects.
 
+## Recommended Test Transforms
+
+`node index.js house.bmp house-grey-flip.bmp grayscaleSoft flipY`
+
+`node index.js house.bmp house-soft-red.bmp grayscaleSoft red`
+
+`node index.js house.bmp house-neon.bmp red`
+
+`node index.js house.bmp house-green-blue.bmp red invert`
+
+`node index.js house.bmp house-spooky-red.bmp grayscaleSoft blue green blue invert`
+
+`node index.js finger-print.bmp finger-print-pink.bmp blue green grayscaleAvg blue red`
+
+`node index.js finger-print.bmp finger-print-aquamarine.bmp blue green grayscaleAvg blue red invert red invert blue flipY`
+
 ## Modules:
 
 parser.js - exports a function that returns an object based off of buffer data which is read from index.js.
@@ -41,3 +57,7 @@ index.js - utilizes fs.readFile to read a buffer from a file which parser.js use
 
 ## Grayscale algorithm source:
 https://www.johndcook.com/blog/2009/08/24/algorithms-convert-color-grayscale/
+
+## Limitations
+
+BMP files must have 8bit color, and all color transforms require bmp to use a color palette.
