@@ -11,7 +11,8 @@ run in terminal `node index.js <input file name> <output file name> <transformat
 `<transformation>` must exist in the below Transformations list.
 
 ## Transformations:
-grayscaleSoft  *this is the best of the grayscale transformations
+grayscaleSoft  
+  - This is the best of the grayscale transformations, and can be used to take the noise out of a picture (although it does make it gray). Try running this first and then the red, green, or blue transforms.
 grayscaleAvg
 grayscaleLum
 invert
