@@ -6,17 +6,7 @@ const WIDTH_OFFSET = 18;
 const HEIGHT_OFFSET = 22;
 const COLOR_TABLE_OFFSET = 54;
 
-// let makePixelArray = bufferData => {
-//   let pixelArray = [];
-//   // rob - split the pixel array buffer up by row
-//   for(let i = 0; i < bufferData.height; i++) {
-//     pixelArray.push(bufferData.pixelArrayBuffer.slice(i * bufferData.pixelArrayRowLength, (i + 1) * bufferData.pixelArrayRowLength));
-//   }
-
-//   return pixelArray;
-// };
-
-module.exports = (buffer) => {
+module.exports = buffer => {
   const bufferData = {
     buffer: buffer,
     type: buffer.toString('utf-8', 0,2),
@@ -30,7 +20,6 @@ module.exports = (buffer) => {
   bufferData.pixelArrayRowLength = Math.floor((8 * bufferData.width + 31) / 32) * 4;
   bufferData.pixelArraySize = bufferData.pixelArrayRowLength * bufferData.height;
   bufferData.pixelArrayBuffer = buffer.slice(bufferData.pixelArrayOffset, bufferData.pixelArrayOffset + bufferData.pixelArraySize);
-  // bufferData.pixelArray = makePixelArray(bufferData);
 
   return bufferData;
 };

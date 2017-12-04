@@ -16,10 +16,6 @@ describe('parser.js', () => {
     }
   }
 
-  let testPixelArrayFormatted = [];
-  // for(let i = 0; i < 150; i++)
-  //   testPixelArrayFormatted.push(testPixelArray.slice(i * 100, (1 + 1) * 100));
-
   test('Parser should return an object containing the metadata from a buffer.', () => {
     let testData = {
       buffer: asset.testBuffer,
@@ -32,7 +28,6 @@ describe('parser.js', () => {
       pixelArrayRowLength: 100,
       pixelArraySize: 15000,
       pixelArrayBuffer: Buffer.from(testPixelArray),
-      // pixelArray: testPixelArrayFormatted,
     };
     expect(parser(asset.testBuffer)).toEqual(testData);
   });

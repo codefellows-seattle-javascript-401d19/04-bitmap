@@ -2,10 +2,10 @@
 
 const transforms = {};
 
-let makePixelArray = bufferData => {
+let makePixelArray = bmpData => {
   let pixelArray = [];
-  for (let i = 0; i < bufferData.height; i++) {
-    pixelArray.push(bufferData.pixelArrayBuffer.slice(i * bufferData.pixelArrayRowLength, (i + 1) * bufferData.pixelArrayRowLength));
+  for (let i = 0; i < bmpData.height; i++) {
+    pixelArray.push(bmpData.pixelArrayBuffer.slice(i * bmpData.pixelArrayRowLength, (i + 1) * bmpData.pixelArrayRowLength));
   }
 
   return pixelArray;
@@ -17,6 +17,35 @@ transforms.flipY = bmpData => {
     tempBuff = Buffer.from(array[i]);
     array[array.length - 1 - i].copy(array[i]);
     tempBuff.copy(array[array.length - 1 - i]);
+  }
+};
+
+transforms.grayscaleSoft = bmpData => {
+  let buff = bmpData.colorPaletteBuffer;
+  for (let i = 0; i < buff.length; i += 4) {
+    buff[i + 1] = buff[i];
+    buff[i + 2] = buff[i];
+  }
+};
+
+transforms.red = bmpData => {
+  let buff = bmpData.colorPaletteBuffer;
+  for (let i = 0; i < buff.length; i += 4) {
+    buff[i + 2] = 255;
+  }
+};
+
+transforms.blue = bmpData => {
+  let buff = bmpData.colorPaletteBuffer;
+  for (let i = 0; i < buff.length; i += 4) {
+    buff[i] = 255;
+  }
+};
+
+transforms.green = bmpData => {
+  let buff = bmpData.colorPaletteBuffer;
+  for (let i = 0; i < buff.length; i += 4) {
+    buff[i + 1] = 255;
   }
 };
 

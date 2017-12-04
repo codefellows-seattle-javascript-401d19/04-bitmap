@@ -59,22 +59,13 @@ let bmpBufferFlipY = Buffer.from(bmpArrayFLipY);
 
 // export the buffer so we can test with it.
 asset.testBuffer = bmpBuffer;
-asset.testBufferFlipY = bmpBufferFlipY;
-asset.testDataFlipY = parse(bmpBufferFlipY);
 asset.testBufferColorPalette = Buffer.from(colorPalette);
 asset.testData1 = {colorPaletteBuffer: Buffer.from(colorPalette)};
 asset.testData2 = {colorPaletteBuffer: Buffer.from(colorPalette)};
 asset.testData3 = {colorPaletteBuffer: Buffer.from(colorPalette)};
-
-// function writeTestFile(buffer) {
-//   const fs = require('fs');
-//   fs.writeFile(`${__dirname}/bmp-test.bmp`, buffer, (error) => {
-//     if (error) {
-//       console.error(`\n${error}`);
-//       return;
-//     }
-//     console.log(`Test file has been written successfully.`);
-//   });
-// }
-
-// writeTestFile(bmpBuffer);
+asset.testData4 = {colorPaletteBuffer: Buffer.from(colorPalette)};
+asset.testData5 = {colorPaletteBuffer: Buffer.from(colorPalette)};
+asset.testData6 = {colorPaletteBuffer: Buffer.from(colorPalette)};
+asset.testData7 = {colorPaletteBuffer: Buffer.from(colorPalette)};
+asset.testBufferFlipY = bmpBufferFlipY;
+asset.testDataFlipY = parse(bmpBufferFlipY);
