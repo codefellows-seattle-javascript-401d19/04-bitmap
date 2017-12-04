@@ -1,0 +1,24 @@
+{
+  "name": "04-bitmap",
+  "version": "1.0.0",
+  "description": "bitmap transformer",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest -i --coverage",
+    "lint": "eslint ./"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sedillon93/04-bitmap.git"
+  },
+  "author": "shannon-matthew",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sedillon93/04-bitmap/issues"
+  },
+  "homepage": "https://github.com/sedillon93/04-bitmap#readme",
+  "devDependencies": {
+    "eslint": "^4.12.1",
+    "jest": "^21.2.1"
+  }
+}
