@@ -1,0 +1,19 @@
+{
+  "name": "lab-anthony-rob",
+  "version": "1.0.0",
+  "description": "Practicing reading files and working with buffers.",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest -i --coverage",
+    "lint": "eslint ."
+  },
+  "keywords": [
+    "bmp"
+  ],
+  "author": "Anthony Robinson",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^4.12.1",
+    "jest": "^21.2.1"
+  }
+}
