@@ -16,7 +16,7 @@ transforms.grayscale = (parsedBitmap) => {
       parsedBitmap.colorTable.writeUInt8(array[position - 3], position);
     }
   });
-
+  return parsedBitmap;
 };
 
 transforms.invert = (parsedBitmap) => {
@@ -33,7 +33,7 @@ transforms.invert = (parsedBitmap) => {
       parsedBitmap.colorTable.writeUInt8(255 - array[position], position);
     }
   });
-
+  return parsedBitmap;
 };
 
 transforms.random = (parsedBitmap) => {
@@ -49,6 +49,6 @@ transforms.random = (parsedBitmap) => {
       parsedBitmap.colorTable.writeUInt8(Math.abs((Math.random() * 255) - array[position]), position);
     }
   });
-
+  return parsedBitmap;  
 };
 
