@@ -1,7 +1,7 @@
 'use strict';
 
-const fs = require(`fs`);
-const bitmapTransformer = require(`../lib/bitmapTransformer`);
+// const fs = require(`fs`);
+// const bitmapTransformer = require(`../lib/bitmapTransformer`);
 const indexJS = require(`../index.js`);
 
 describe(`bitmapTransformer.js`, () => {
@@ -18,7 +18,7 @@ describe(`bitmapTransformer.js`, () => {
   });
   test(`indexJS.transformImage should return an error if the transform type provided is not one of the three options`, () => {
     expect(() => {
-      indexJS.transformImage(`house.bmp`, `output.bmp`, [blah]);
+      indexJS.transformImage(`house.bmp`, `output.bmp`, ['blah']);
     }).toThrow();
   });
   test(`indexJS.transformImage should return an error if fewer than three parameters are provided`, () => {
