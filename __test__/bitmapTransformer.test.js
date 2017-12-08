@@ -2,26 +2,34 @@
 
 const indexJS = require(`../index.js`);
 
+let args = [] || process.argv.slice(2);
+console.log(args, `are the args in test`);
+
 describe(`bitmapTransformer.js`, () => {
   test(`indexJS.transformImage should return an edited image based on the transform operation provided if no errors are present`, () => {
     expect(() => {
-      indexJS.transformImage(`house.bmp`, `output.bmp`, 'invert');
+      args = [`house.bmp`,`invert.bmp`,`invert`];
+      indexJS.transformImage(...args);
     }).not.toThrow();
     expect(() => {
-      indexJS.transformImage(`house.bmp`, `output.bmp`, 'greyscale');
+      args = [`house.bmp`,`greyscale.bmp`,`greyscale`];
+      indexJS.transformImage(...args);
     }).not.toThrow();
     expect(() => {
-      indexJS.transformImage(`house.bmp`, `output.bmp`, 'randomize');
+      args = [`house.bmp`,`randomize.bmp`,`randomize`];
+      indexJS.transformImage(...args);
     }).not.toThrow();
   });
   test(`indexJS.transformImage should return an error if the transform type provided is not one of the three options`, () => {
     expect(() => {
-      indexJS.transformImage(`house.bmp`, `output.bmp`, [blah]);
+      args = [`house.bmp`,`randomize.bmp`,[blah]];
+      indexJS.transformImage(...args);
     }).toThrow();
   });
   test(`indexJS.transformImage should return an error if fewer than three parameters are provided`, () => {
     expect(() => {
-      indexJS.transformImage(`house.bmp`, `output.bmp`);
+      args = [`house.bmp`,`randomize.bmp`];
+      indexJS.transformImage(...args);
     }).toThrow();
   });
 });
