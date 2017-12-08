@@ -2,13 +2,14 @@
 
 const indexJS = require(`../index.js`);
 
-let args = [] || process.argv.slice(2);
-console.log(args, `are the args in test`);
+let args = process.argv;
+console.log(args, `are the original args`);
 
 describe(`bitmapTransformer.js`, () => {
   test(`indexJS.transformImage should return an edited image based on the transform operation provided if no errors are present`, () => {
     expect(() => {
       args = [`house.bmp`,`invert.bmp`,`invert`];
+      console.log(args, `are the changed args`);
       indexJS.transformImage(...args);
     }).not.toThrow();
     expect(() => {

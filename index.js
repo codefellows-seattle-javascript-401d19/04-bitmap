@@ -3,9 +3,7 @@
 const bitmapTransformer = require(`./lib/bitmapTransformer`);
 const indexJS = module.exports = {};
 
-indexJS.args = process.argv.slice(2);
-// console.log(process.argv, `is argv`);
-console.log(indexJS.args, `are the args provided in index`);
+let args = process.argv.slice(2);
 
 indexJS.transformImage = (inputPath, outputPath, transforms) => {
   if(!inputPath || !outputPath || transforms.length < 1){
