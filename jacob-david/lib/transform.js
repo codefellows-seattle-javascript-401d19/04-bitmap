@@ -7,19 +7,25 @@ const bitmap = require('./bitmap');
 //need to create an object from the incoming one and change the colorpallete section for each transform then send then send only the complete new object
 
 // TODO: pass in the callback next to the buffer
-transformedBitmap.greyScale = (buffer) => {
-  let parsedBitmapArray = bitmap.parseBitmap(buffer);
+transformedBitmap.greyScale = (bitmap,callback) => {
+  // let parsedBitmapArray = bitmap.parseBitmap(buffer);
   
-  for (let i = 0; i < parsedBitmapArray.length; i+=4) {
+  if(!bitmap || !Buffer.isBuffer(bitmap.buffer))
+    callback(new Error(`must provide a valid buffer`));
+
+  for (let i = 0; i < parsedBitmap.colorPalleteSection.length; i += 4) {
     
-    let grey = Math.floor((parsedBitmapArray[i-3] + parsedBitmapArray[i-2] + parsedBitmapArray[i-1])/3);
+    parsedBitmap.colorPalleteSection[i] = Math.abs(255 - parsedBitmap.colorPalleteSection[i]);
+    parsedBitmap.colorPalleteSection[i + 1] = Math.abs(255 - parsedBitmap.colorPalleteSection[i + 1]);
+    parsedBitmap.colorPalleteSection[i + 2] = Math.abs(255 - parsedBitmap.colorPalleteSection[i + 2]);
     
-    parsedBitmapArray[i-3] = grey;
-    parsedBitmapArray[i-2] = grey;
-    parsedBitmapArray[i-1] = grey;
-    console.log('====================================');
-    console.log(...parsedBitmapArray);
-    console.log('====================================');
+    // let grey = Math.floor((parsedBitmapArray[i-3] + parsedBitmapArray[i-2] + parsedBitmapArray[i-1])/3); 
+    // parsedBitmapArray[i-3] = grey;
+    // parsedBitmapArray[i-2] = grey;
+    // parsedBitmapArray[i-1] = grey;
+    // console.log('====================================');
+    // console.log(...parsedBitmapArray);
+    // console.log('====================================');
   }  
   return transformedBitmap.greyScale();
 };
