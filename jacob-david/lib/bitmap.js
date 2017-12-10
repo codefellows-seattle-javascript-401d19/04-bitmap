@@ -17,12 +17,12 @@ bitmapModule.parseBitmap = (buffer) => {
   parsedBitmap.buffer = buffer;
   parsedBitmap.type = buffer.toString('utf-8',0,2);
   parsedBitmap.fileSize = buffer.readUInt32LE(FILE_SIZE_OFFSET);
-  parsedBitmap.headerSize = buffer.readUInt32LE(HEADER_OFFSET);
-  parsedBitmap.width = buffer.readUInt32LE(WIDTH_OFFSET);
-  parsedBitmap.height = buffer.readUInt32LE(HEIGHT_OFFSET);
-  parsedBitmap.pixelTableOffset = buffer.readUInt32LE(PIXEL_TABLE_OFFSET);
-  parsedBitmap.colorOffset = buffer.readUInt32LE(COLOR_OFFSET);
-  parsedBitmap.bitPerPixelOffset = buffer.readUInt32LE(BIT_PER_PIXEL_OFFSET);
+  // parsedBitmap.headerSize = buffer.readUInt32LE(HEADER_OFFSET);
+  // parsedBitmap.width = buffer.readUInt32LE(WIDTH_OFFSET);
+  // parsedBitmap.height = buffer.readUInt32LE(HEIGHT_OFFSET);
+  // parsedBitmap.pixelTableOffset = buffer.readUInt32LE(PIXEL_TABLE_OFFSET);
+  // parsedBitmap.colorOffset = buffer.readUInt32LE(COLOR_OFFSET);
+  // parsedBitmap.bitPerPixelOffset = buffer.readUInt32LE(BIT_PER_PIXEL_OFFSET);
   parsedBitmap.colorPalleteSection = buffer.slice(HEADER_AND_DIB_OFFSET, parsedBitmap.pixelTableOffset); 
   
   return parsedBitmap; 
