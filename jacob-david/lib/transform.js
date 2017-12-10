@@ -27,7 +27,10 @@ transformedBitmap.greyScale = (bitmap,callback) => {
     // console.log(...parsedBitmapArray);
     // console.log('====================================');
   }  
-  return transformedBitmap.greyScale();
+  console.log('perform inverted transformation');
+  if(callback)
+    callback(null,bitmap);
+  // return transformedBitmap.greyScale();
 };
 
 
