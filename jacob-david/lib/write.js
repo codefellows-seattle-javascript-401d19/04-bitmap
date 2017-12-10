@@ -14,7 +14,7 @@ const readWrite = module.exports = {};
 
 readWrite.readBMP = (bmpPath, transform, callback) => {
   if(!bmpPath)
-    callback(new Error('must provide a valid path'));
+    callback(new Error('READ-WRITE : must provide a valid path'));
 
   fs.readFile(`${__dirname}/../assets/${bmpPath}`, (error,bitmapFile) => {
     if(error){
@@ -26,5 +26,24 @@ readWrite.readBMP = (bmpPath, transform, callback) => {
     if(callback){
       transform[transform](bitmap.parseBitmap(bitmapFile),callback);
     }
+  });
+};
+
+readWrite.writeBMP = (bmpPath, parsedBitmap, callback) => {
+
+  if(!bmpPath)
+    callback(new Error('READ-WRITE : must provide a valid path'));
+  
+  if(!parsedBitmap || !Buffer.isBuffer(parsedBitmap.buffer))
+    callback(new Error('READ-WRITE : must provide a valid parsed Bitmap'));
+  
+  fs.writeFile(`${__dirname}/../assets/${bmpPath}`, parsedBitmap.buffer, (error,data) => {
+    if(error)
+      callback(error);
+
+    if(callback)
+      callback(null,data);
+    
+    return null;
   });
 };

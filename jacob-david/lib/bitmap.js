@@ -14,6 +14,7 @@ bitmapModule.parseBitmap = (buffer) => {
   const WIDTH_OFFSET = 18;
   const HEADER_AND_DIB_OFFSET = 54;
 
+  parsedBitmap.buffer = buffer;
   parsedBitmap.type = buffer.toString('utf-8',0,2);
   parsedBitmap.fileSize = buffer.readUInt32LE(FILE_SIZE_OFFSET);
   parsedBitmap.headerSize = buffer.readUInt32LE(HEADER_OFFSET);
