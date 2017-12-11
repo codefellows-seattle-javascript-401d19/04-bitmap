@@ -13,11 +13,11 @@ transformedBitmap.greyScale = (bitmap,callback) => {
   if(!bitmap || !Buffer.isBuffer(bitmap.buffer))
     callback(new Error(`must provide a valid buffer`));
 
-  for (let i = 0; i < parsedBitmap.colorPalleteSection.length; i += 4) {
+  for (let i = 0; i < bitmap.colorPalleteSection.length; i += 4) {
     
-    parsedBitmap.colorPalleteSection[i] = Math.abs(255 - parsedBitmap.colorPalleteSection[i]);
-    parsedBitmap.colorPalleteSection[i + 1] = Math.abs(255 - parsedBitmap.colorPalleteSection[i + 1]);
-    parsedBitmap.colorPalleteSection[i + 2] = Math.abs(255 - parsedBitmap.colorPalleteSection[i + 2]);
+    bitmap.colorPalleteSection[i] = Math.abs(255 - bitmap.colorPalleteSection[i]);
+    bitmap.colorPalleteSection[i + 1] = Math.abs(255 - bitmap.colorPalleteSection[i + 1]);
+    bitmap.colorPalleteSection[i + 2] = Math.abs(255 - bitmap.colorPalleteSection[i + 2]);
     
     // let grey = Math.floor((parsedBitmapArray[i-3] + parsedBitmapArray[i-2] + parsedBitmapArray[i-1])/3); 
     // parsedBitmapArray[i-3] = grey;
