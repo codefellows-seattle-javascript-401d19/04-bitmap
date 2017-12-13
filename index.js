@@ -6,6 +6,10 @@ const indexJS = module.exports = {};
 let args = process.argv.slice(2);
 
 indexJS.transformImage = (inputPath, outputPath, transforms) => {
+  console.log(inputPath, `is the input path`);
+  console.log(outputPath, `is the output path`);
+  console.log(transforms, `is/are the transforms`);
+
   if(!inputPath || !outputPath || transforms.length < 1){
     throw new Error(`Please provide an input path, an output path, and at least one transformation type`);
   }
@@ -34,4 +38,4 @@ indexJS.transformImage = (inputPath, outputPath, transforms) => {
   });
 };
 
-// indexJS.transformImage(args[0], args[1], args.slice(2));
+indexJS.transformImage(args[0], args[1], args.slice(2));
