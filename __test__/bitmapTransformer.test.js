@@ -1,9 +1,8 @@
 'use strict';
 
-const indexJS = require(`../index.js`);
+const imageTransformer = require(`../imageTransformer.js`);
 
 let args;
-console.log(args, `are the original args`);
 
 describe(`bitmapTransformer.js`, () => {
   test(`indexJS.transformImage should return an edited image based on the transform operation provided if no errors are present`, () => {
